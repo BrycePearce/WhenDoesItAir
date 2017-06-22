@@ -1,0 +1,25 @@
+{
+  "name": "whendoesitair",
+  "version": "1.0.0",
+  "description": "An Angular application that allows users to find when a TV show will air",
+  "main": "index.js",
+  "scripts": {
+    "test": "npm run build-watch, npm start"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/BrycePearce/WhenDoesItAir.git"
+  },
+  "keywords": [
+    "whendoesitair"
+  ],
+  "author": "BP",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/BrycePearce/WhenDoesItAir/issues"
+  },
+  "homepage": "https://github.com/BrycePearce/WhenDoesItAir#readme",
+  "devDependencies": {
+    "@angular/cli": "^1.1.3"
+  }
+}
