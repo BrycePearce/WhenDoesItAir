@@ -12,7 +12,7 @@ router.get('/token', function (req, res, next) {
     .post("https://api.thetvdb.com/login")
     .send({
       "apikey": process.env.apikey,
-      "userasdkey": process.env.userkey,
+      "userkey": process.env.userkey,
       "username": process.env.user
     })
     .set('Accept', 'application/json')
