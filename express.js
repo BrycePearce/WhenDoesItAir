@@ -18,12 +18,16 @@ app.set('view engine', 'ejs');
 app.engine('html', require('ejs').renderFile);
 
 //static folder for angular
-app.use(express.static(path.join(__dirname, 'client')));
+app.use(express.static(path.join(__dirname, 'client/dist/')));
 
 //Body parser MW
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 
+//I think this will intercept all routes
+app.get('/', function(req, res) {
+  res.sendFile(path.resolve(__dirname + '/client/dist/index.html'));
+});
 
 app.use('/', index);
 app.use('/api', token);//http://localhost:8080/api/token

@@ -1,5 +1,5 @@
 //meeting file for all the different modules/components
-
+//every import gets distributed to the components
 import { BrowserModule } from '@angular/platform-browser';
 import { HttpModule } from '@angular/http';
 import { NgModule } from '@angular/core';
