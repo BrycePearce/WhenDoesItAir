@@ -4,35 +4,44 @@ var express = require('express');
 var router = express.Router();
 var request = require('superagent');
 
-//get our token (this will run on startup, need to put it in the router.get, then next the tvdb call)
-request
-  .get("http://127.0.0.1:8080/api/token")
-  .set('Accept', 'application/json')
-  .end(function (err, response) {
-    if (err || response.status != 200) {
-      console.log(":(");
-     // return res.status(response.status).json({ success: false, status: response.status });
-    } else {
-      console.log(response.body);
-      console.log(":)" + response.body);
-      //  return res.status(response.status).json({ token: response.body.token, status: response.status });
-    }
-  });
 
-/*
-router.get('/tvdb', function (req, res, next) {
+router.post('/tvdb', function (req, res, next) {
+  console.log(req.body.keystroke);
+    //get our token (this will run on startup, need to put it in the router.get, then next the tvdb call)
   request
-    .get("https://api.thetvdb.com/search/series?name=" + "keystrokes goes here")
-    .set('Authorization:', 'Bearer ' + "keygoeshere")
+    .post("https://api.thetvdb.com/swagger/search/series/" + req.body.keystroke)
+    .set('Accept', 'application/json') // ******* WE NEED TO AD TOKEN AS A HEADER ****************************
     .end(function (err, response) {
-      if (err || !response.ok) {
-        console.log(":(");
+      if (err || response.status != 200) {
+        console.log(":( " + response.status);
         // return res.status(response.status).json({ success: false, status: response.status });
       } else {
-        console.log(":)");
+        console.log(response.body);
+        console.log(":)" + response.body);
         //  return res.status(response.status).json({ token: response.body.token, status: response.status });
       }
     });
-});*/
+});
+
+
+
+
+
+/*
+  //get our token (this will run on startup, need to put it in the router.get, then next the tvdb call)
+  request
+    .get("http://127.0.0.1:8080/api/token")
+    .set('Accept', 'application/json')
+    .end(function (err, response) {
+      if (err || response.status != 200) {
+        console.log(":(");
+        // return res.status(response.status).json({ success: false, status: response.status });
+      } else {
+        console.log(response.body);
+        console.log(":)" + response.body);
+        //  return res.status(response.status).json({ token: response.body.token, status: response.status });
+      }
+    });
+*/
 
 module.exports = router;

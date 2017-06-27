@@ -13,11 +13,15 @@ export class TaskService {
       .map(res => res.json());
   }
   //add the new keystrokes from getResults() in app.component.ts, make api call to get results
+  //post our newkeystroke to our tbdb route to query
   addKey(newKey) {
-    console.log("addKey" + newKey.keystroke);
+    console.log("addKey = " + newKey.keystroke);
     var headers = new Headers();
+
+    
     headers.append('Content-Type', 'application/json');
-    return this.http.post("http://localhost:3000/api/tvdb", JSON.stringify(newKey), {headers: headers})
+    //keystroke here is going to be our req.body data in the recieving route
+    return this.http.post("http://localhost:8080/api/tvdb/", {keystroke: newKey.keystroke}, { headers: headers })
       .map(res => res.json());
   }
 }
