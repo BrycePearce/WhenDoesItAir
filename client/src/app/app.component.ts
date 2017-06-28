@@ -17,17 +17,12 @@ export class AppComponent {
   constructor(private TaskService: TaskService) { //inject our taskService into our AppComponent
   }
 
-  getKey(event) {
-    //event.preventDefault(); // so it won't submit
-    console.log(event);
-    let newKeystroke = {
-      keystroke: this.keystroke
-    }
-
-    this.TaskService.addKey(newKeystroke)
-    .subscribe(key => {
-      this.keystroke = key;
-    });
+  getKey(keystroke) {
+    //send our keystroke to our addKey service, which returns our results
+    this.TaskService.addKey(keystroke)
+      .subscribe(res => {
+        console.log(res);
+        //this.keystroke = key;
+      });
   }
-
 }
