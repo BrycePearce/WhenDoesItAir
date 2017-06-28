@@ -1,8 +1,4 @@
-//create the route for creating and updating our token here
-//remember to-do a 24 hour timer on the backend so it refreshes
-
-//https://github.com/kelektiv/node-cron this for the 24 hour thing?
-//https://github.com/node-schedule/node-schedule or this
+//hit this route if you want to create a new token
 var express = require('express');
 var router = express.Router();
 var request = require('superagent');

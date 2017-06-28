@@ -6,22 +6,19 @@ export class TaskService {
   constructor(private http: Http) {
     console.log("Task service initialized...");
   }
-  //use this for something else
-  getResults() {
-    console.log("getResults in task.service.ts");
-    return this.http.get('http://localhost:8080/api/tvdb')
-      .map(res => res.json());
-  }
   //add the new keystrokes from getResults() in app.component.ts, make api call to get results
   //post our newkeystroke to our tbdb route to query
   addKey(newKey) {
     console.log("addKey = " + newKey.keystroke);
     var headers = new Headers();
-
     
     headers.append('Content-Type', 'application/json');
     //keystroke here is going to be our req.body data in the recieving route
-    return this.http.post("http://localhost:8080/api/tvdb/", {keystroke: newKey.keystroke}, { headers: headers })
+    return this.http.post("http://localhost:8080/api/tvdb", {keystroke: newKey.keystroke}, { headers: headers })
       .map(res => res.json());
+  }
+
+  getResults() {
+    console.log("getResults in task.service.ts");
   }
 }

@@ -12,9 +12,9 @@ let prevTime = 0;
 
 const app = express();
 
-//get our env token
-app.set('atoken', process.env.token);
-
+//set our env token & tmdb key
+app.set('jsontoken', process.env.token);
+app.set('tmdbkey', process.env.TMDBkey);
 //set port (local environment variable is set as PORT=80)
 app.set('port', process.env.PORT || 8080);
 
@@ -37,29 +37,30 @@ app.get('/', function (req, res) {
 
 // This function is executed every time the app receives a request.
 // Handles our token, see's if it needs to be renewed, and if so, renews it
-app.use(function (req, res, next) {
+/*app.use(function (req, res, next) {
   var currTime = Date.now();
   if (currTime - prevTime >= 84600) { //23.5 hours in seconds 
     prevTime = currTime;
     request
       .get("https://api.thetvdb.com/refresh_token")
       .set('Accept', 'application/json')
-      .set('Authorization', 'Bearer ' + app.get('atoken'))
+      .set('Authorization', 'Bearer ' + app.get('jsontoken'))
       .end(function (err, response) {
         if (err || !response.ok) {
-          console.log("feelsbadman");
-          return res.status(response.status).json({ success: false, status: response.status });
+          console.log("refreshing token did not succeed");
+          next();
         } else {
-          console.log("feelsgoodman, our token refreshed as " + response.body.token);
-          app.set('atoken', response.body.token);
-          return res.status(response.status).json({ success: true, status: response.status });
+          console.log("Token refreshed");
+          app.set('jsontoken', response.body.token);
+          next();
         }
       });
   }
-})
+});*/
+
 app.use('/', index);
 app.use('/api', token);//http://localhost:8080/api/token
-app.use('/api', tvdb); //http://localhost:8080/api/tvdb/:keystroke
+app.use('/api', tvdb); //http://localhost:8080/api/tvdb
 //always last so you can make sure everything else is loaded before accepting connections.
 app.listen(app.get('port'), function () {
   console.log("Express started on port: " + app.get('port'));

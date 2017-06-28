@@ -15,14 +15,9 @@ export class AppComponent {
   keystrokeRes: string;
 
   constructor(private TaskService: TaskService) { //inject our taskService into our AppComponent
-    this.TaskService.getResults() //reference our function in task.service.ts to get our keystroke api call result
-      .subscribe(res => {
-        console.log("getResults call in app.component.ts");
-        console.log(res);
-      });
   }
 
-  getResults(event) {
+  getKey(event) {
     //event.preventDefault(); // so it won't submit
     console.log(event);
     let newKeystroke = {

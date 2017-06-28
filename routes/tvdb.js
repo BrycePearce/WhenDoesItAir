@@ -6,19 +6,17 @@ var request = require('superagent');
 
 
 router.post('/tvdb', function (req, res, next) {
-  console.log(req.body.keystroke);
-    //get our token (this will run on startup, need to put it in the router.get, then next the tvdb call)
+  //get our token (this will run on startup, need to put it in the router.get, then next the tvdb call)
   request
-    .post("https://api.thetvdb.com/swagger/search/series/" + req.body.keystroke)
-    .set('Accept', 'application/json') // ******* WE NEED TO AD TOKEN AS A HEADER ****************************
+    .post("https://api.themoviedb.org/3/search/tv?api_key=" + req.app.get('tmdbkey') + "&language=en-US&query=" + req.body.keystroke)
+    .set('Accept', 'application/json')
     .end(function (err, response) {
       if (err || response.status != 200) {
         console.log(":( " + response.status);
-        // return res.status(response.status).json({ success: false, status: response.status });
+        return res.status(response.status).json({ status: response.status });
       } else {
-        console.log(response.body);
-        console.log(":)" + response.body);
-        //  return res.status(response.status).json({ token: response.body.token, status: response.status });
+        console.log("successful query on backend");
+        return res.status(response.status).json({ results: response.body, status: response.status });
       }
     });
 });
