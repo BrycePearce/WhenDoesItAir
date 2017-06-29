@@ -10,9 +10,9 @@ import { TaskService } from './services/task.service'; //task.service.ts
   providers: [TaskService]
 })
 export class AppComponent {
-  title = 'WhenDoesItAir';
+  header = 'WhenDoesItAir';
   keystroke: string;
-  keystrokeRes: string;
+  title = [];
 
   constructor(private TaskService: TaskService) { //inject our taskService into our AppComponent
   }
@@ -21,8 +21,7 @@ export class AppComponent {
     //send our keystroke to our addKey service, which returns our results
     this.TaskService.addKey(keystroke)
       .subscribe(res => {
-        console.log(res);
-        //this.keystroke = key;
+        this.title = res.data;
       });
   }
 }

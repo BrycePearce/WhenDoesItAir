@@ -11,10 +11,10 @@ export class TaskService {
   addKey(newKey) {
     console.log("addKey = " + newKey);
     var headers = new Headers();
-    
+
     headers.append('Content-Type', 'application/json');
     //keystroke here is going to be our req.body data in the recieving route
-    return this.http.post("http://localhost:8080/api/tvdb", {keystroke: newKey}, { headers: headers })
+    return this.http.post("http://localhost:8080/api/tvdb", { keystroke: newKey }, { headers: headers })
       .map(res => res.json());
   }
 }

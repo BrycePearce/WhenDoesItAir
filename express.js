@@ -5,9 +5,9 @@ var request = require('superagent');
 require('dotenv').config();
 
 //load in our routes
-var index = require('./routes/index');
 var tvdb = require('./routes/tvdb');
 var token = require('./routes/token');
+
 let prevTime = 0;
 
 const app = express();
@@ -48,6 +48,7 @@ app.get('/', function (req, res) {
       .end(function (err, response) {
         if (err || !response.ok) {
           console.log("refreshing token did not succeed");
+          console.log("call our token route here?");
           next();
         } else {
           console.log("Token refreshed");
@@ -58,7 +59,6 @@ app.get('/', function (req, res) {
   }
 });*/
 
-app.use('/', index);
 app.use('/api', token);//http://localhost:8080/api/token
 app.use('/api', tvdb); //http://localhost:8080/api/tvdb
 //always last so you can make sure everything else is loaded before accepting connections.

@@ -15,8 +15,12 @@ router.post('/tvdb', function (req, res, next) {
         console.log(":( " + response.status);
         return res.status(response.status).json({ status: response.status });
       } else {
-        console.log("successful query on backend");
-        return res.status(response.status).json({ results: response.body, status: response.status });
+
+        let resultItems = response.body.results.map((show, index) => {
+          return { id: show.id, show: show.name };
+        });
+        //service is expecting a json result, and we want it as one object, so send it back like so
+        return res.json({ data: resultItems });
       }
     });
 });
