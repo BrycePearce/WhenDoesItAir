@@ -33,6 +33,8 @@ export class ResultPage implements OnInit {
     //send our id to our selectShow service, which returns our results
     this.TaskService.selectShow(this.id)
       .subscribe(res => {
+        console.log("resultpage recieved data");
+        console.log(res);
         this.episodeInfo = res.data;
       });
   }

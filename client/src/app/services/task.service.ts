@@ -10,7 +10,6 @@ export class TaskService {
   //post our newkeystroke to our tbdb route to query
   addKey(newKey) {
     var headers = new Headers();
-
     headers.append('Content-Type', 'application/json');
     //keystroke here is going to be our req.body data in the recieving route
     return this.http.post("http://localhost:8080/api/tvdb", { keystroke: newKey }, { headers: headers })
@@ -18,6 +17,7 @@ export class TaskService {
   }
 
   selectShow(id) {
+    console.log("select show being called");
     var headers = new Headers();
     headers.append('Content-Type', 'application/json');
     //keystroke here is going to be our req.body data in the recieving route

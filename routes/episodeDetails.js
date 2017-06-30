@@ -14,45 +14,21 @@ router.post('/episode', function (req, res, next) {
       if (err || response.status != 200) {
         return null;
       } else {
-        console.log(response.body.imdb_id);
-
-        /*
-        todo:
-        request tvdb episode info here with the imdbid
-        */
-
-
-
-
-
-        /*let showInfo = response.body.results.map((show, index) => {
-          return { id: show.id, show: show.name };
-        });*/
-        //service is expecting a json result, and we want it as one object, so send it back like so
-        /*return res.json({ data: showInfo });*/
+        console.log(response.body.tvdb_id);
+        request
+          .get("https://api.thetvdb.com/series/" + response.body.tvdb_id)
+          .set('Accept', 'application/json')
+          .set('Authorization', 'Bearer ' + req.app.get('jsontoken'))
+          .end(function (err, response) {
+            if (err || response.status != 200) {
+              console.log("problem " + err);
+              return null;
+            } else {
+              return res.json({ series: response.body.data });
+            }
+          });
       }
     });
 });
-
-//our tvdb call
-/*
-  request
-    .post(" https://api.thetvdb.com/seach/series")
-    .set('Accept', 'application/json')
-    .set('Authorization', 'Bearer ' + req.app.get('jsontoken'))
-    .end(function (err, response) {
-      console.log("you dun goofed. http error " + err);
-      if (err || response.status != 200) {
-        return null;
-      } else {
-        console.log("successssssssssssssssssssss!!");
-        let showInfo = response.body.results.map((show, index) => {
-          return { id: show.id, show: show.name };
-        });
-        //service is expecting a json result, and we want it as one object, so send it back like so
-        return res.json({ data: showInfo });
-      }
-    });
-*/
 
 module.exports = router;

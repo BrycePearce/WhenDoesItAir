@@ -38,7 +38,7 @@ app.get('/', function (req, res) {
 
 // This function is executed every time the app receives a request.
 // Handles our token, see's if it needs to be renewed, and if so, renews it
-/*app.use(function (req, res, next) {
+app.use(function (req, res, next) {
   var currTime = Date.now();
   if (currTime - prevTime >= 84600) { //23.5 hours in seconds 
     prevTime = currTime;
@@ -50,15 +50,14 @@ app.get('/', function (req, res) {
         if (err || !response.ok) {
           console.log("refreshing token did not succeed");
           console.log("call our token route here?");
-          next();
         } else {
           console.log("Token refreshed");
           app.set('jsontoken', response.body.token);
-          next();
         }
       });
   }
-});*/
+  next();
+});
 
 app.use('/api', token);//http://localhost:8080/api/token
 app.use('/api', tvdb); //http://localhost:8080/api/tvdb
