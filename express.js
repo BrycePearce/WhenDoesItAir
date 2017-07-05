@@ -41,6 +41,7 @@ app.get('/', function (req, res) {
 app.use(function (req, res, next) {
   var currTime = Date.now();
   if (currTime - prevTime >= 84600) { //23.5 hours in seconds 
+    console.log(currTime + " - " + prevTime + " >= " + 84600)
     prevTime = currTime;
     request
       .get("https://api.thetvdb.com/refresh_token")
@@ -48,8 +49,24 @@ app.use(function (req, res, next) {
       .set('Authorization', 'Bearer ' + app.get('jsontoken'))
       .end(function (err, response) {
         if (err || !response.ok) {
-          console.log("refreshing token did not succeed");
-          console.log("call our token route here?");
+          console.log("getting a new token");
+          request
+            .post("https://api.thetvdb.com/login")
+            .send({
+              "apikey": process.env.apikey,
+              "userkey": process.env.userkey,
+              "username": process.env.user
+            })
+            .set('Accept', 'application/json')
+            .end(function (err, response) {
+              if (err || !response.ok) {
+                return res.status(response.status).json({ success: false, status: response.status });
+              } else {
+                console.log("success!");
+                app.set('jsontoken', response.body.token);
+                return res.status(response.status);
+              }
+            });
         } else {
           console.log("Token refreshed");
           app.set('jsontoken', response.body.token);

@@ -9,7 +9,7 @@
 <input type="text" [(ngModel)]="keystroke" (ngModelChange)="getKey($event)">
 
 <ol>
-  <li (click)="selectShow(list.id)" [routerLink]="['/details', list.id]" *ngFor="let list of shows">{{list.show}}
+  <li (click)="setTitle(list.show)" [routerLink]="['/details', list.id]" *ngFor="let list of shows">{{list.show}}
   </li>
 </ol>
 

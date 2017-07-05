@@ -9,6 +9,8 @@ import { AppComponent }         from './app.component';
 import { LandingPage } from './components/landingpage/landingpage.component';
 import { ResultPage } from './components/resultpage/resultpage.component';
 import { AppRoutingModule } from './app-routing.module';
+// service
+//import { TitleService } from './services/title.service';
 
 @NgModule({
   declarations: [
