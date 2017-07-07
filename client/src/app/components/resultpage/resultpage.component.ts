@@ -20,7 +20,7 @@ export class ResultPage implements OnInit {
   sub: any;
   airDate: string;
   episodesInfo = [];
-  title: string;
+  tmdbDetails: Object;
 
   constructor(
     private route: ActivatedRoute, // for our route params
@@ -31,8 +31,11 @@ export class ResultPage implements OnInit {
 
 
   ngOnInit(): void {
-    //set our title from our service value
-   this.title = this.TitleService.getTitle();
+    //set our data from the landingpage/service to our details object
+    this.tmdbDetails = this.TitleService.getTitle();
+    console.log(this.tmdbDetails);
+    // background
+    //document.body.style.backgroundImage = "url('https://image.tmdb.org/t/p/w1920" +this.tmdbDetails.backdrop + "')"; on second thought, I'll just do backdrops in the landing page
     // grab our ID 
     this.sub = this.route.params.subscribe(params => {
       this.tmdbid = params['id'];

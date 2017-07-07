@@ -6,7 +6,6 @@ require('dotenv').config();
 
 //load in our routes
 var tvdb = require('./routes/tvdb');
-var token = require('./routes/token');
 var episode = require('./routes/episodeDetails');
 
 let prevTime = 0;
@@ -76,7 +75,6 @@ app.use(function (req, res, next) {
   next();
 });
 
-app.use('/api', token);//http://localhost:8080/api/token
 app.use('/api', tvdb); //http://localhost:8080/api/tvdb
 app.use('/api', episode); //http://localhost:8080/api/episode
 //always last so you can make sure everything else is loaded before accepting connections.

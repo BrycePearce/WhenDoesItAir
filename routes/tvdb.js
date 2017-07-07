@@ -15,7 +15,8 @@ router.post('/tvdb', function (req, res, next) {
         return null;
       } else {
         let resultItems = response.body.results.map((show, index) => {
-          return { id: show.id, show: show.name };
+          // TODO: cleanup not found results here 
+          return { id: show.id, poster: show.poster_path, rating: show.vote_average, backdrop: show.backdrop_path, show: show.name, overview: show.overview, year: show.first_air_date.substring(0,4)};
         });
         //service is expecting a json result, and we want it as one object, so send it back like so
         return res.json({ data: resultItems });
