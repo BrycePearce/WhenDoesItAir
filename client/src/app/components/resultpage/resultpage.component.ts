@@ -21,14 +21,15 @@ export class ResultPage implements OnInit {
   airDate: string;
   episodesInfo = [];
   tmdbDetails: Object;
+  country = "";
+  tvdbId: string;
+  tvdbInfo: Object;
 
   constructor(
     private route: ActivatedRoute, // for our route params
     private TaskService: TaskService,  //inject our taskService into our LandingPage
     private TitleService: TitleService
   ) { }
-
-
 
   ngOnInit(): void {
     //set our data from the landingpage/service to our details object
@@ -45,10 +46,11 @@ export class ResultPage implements OnInit {
     //send our id to our selectShow service, which returns our results
     this.TaskService.selectShow(this.tmdbid)
       .subscribe(res => {
-        console.log(res);
+        this.tvdbId = res.tvdbId;
         let pastArray = [];
         let futureArray = [];
         let futureTimes = [];
+
         this.episodesInfo = res.series;
         let now = moment().format('YYYY-MM-DD');
         this.episodesInfo.forEach(element => {
@@ -69,8 +71,16 @@ export class ResultPage implements OnInit {
               break;
             }
           }
-        } else this.airDate = moment(futureArray[0]).endOf('day').fromNow();
+        } else { this.airDate = moment(futureArray[0]).endOf('day').fromNow(); }
         console.log(futureArray);
+
+
+        this.tvdbInfo = this.TaskService.tvdbDetails(this.tvdbId)
+          .subscribe(res => {
+            this.tvdbInfo = res;
+            console.log("response from tvdbDetails");
+            console.log(res);
+          });
       });
   }
 }

@@ -4,136 +4,79 @@
  * Padding pushes away from things inside the div.
  * Margin pushes away from other elements.
  */
+
 * {
-  font-family: Roboto;
-  font-size: 15px;
-  /*helps normalize sizes for width/height */
-  box-sizing: border-box;
+box-sizing: border-box;
+}
+h1 {
+  color: #720606;
+  text-align: center;
+  text-shadow: 1px 0 0 #000, 0 -1px 0 #000, 0 1px 0 #000, -1px 0 0 #000;
+}
+.landingContainer {
+  max-width: 1024px;
+  margin: 0px auto 0px auto;
+}
+.searchArea {
+  max-width: 624px;
+  margin: auto;
+  margin-top: 30vh;
 }
 
-/*this background element over-rides everything for some reason*/
-.background {
-    position: absolute;
-    top: 0;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    background-size: cover;
-    background-position: center top;
-    background-repeat: no-repeat;
+input {
+  background-color: rgba(black, .5);
+  box-shadow: inset 0px 0px 15px 1px rgba(0,0,0,0.50);
+  border: 2px solid white;
+  border-radius: 4px;
+  font-size: 36px;
+  letter-spacing: 1.5px;
+  text-align: center;
+  height: 72px;
+  width: 100%;
+  border-color: #720606;
 }
-ol {
-  margin: 0;
-  padding-left: 0;
-  list-style: none;
+
+.background {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background-size: cover;
+  background-position: center top;
+  background-repeat: no-repeat;
+}
+
+.results-list{
+    list-style: none;
+    font-size: 16px;
+    margin-top: 10px;
+    cursor: pointer;
 }
 
 li {
-  list-style: none;
-  padding: 5px;
-  border: 1px solid #d5d6d5;
-  /* flexing so things will be inline */
-  display: flex;
-  color:#583c3c;
-  cursor:pointer;
-
+    list-style: none;
+    padding: 5px;
+    border: 1px solid #720606;
+    display: flex;
+    color: black;
+    background: rgba(128,128,128,0.5);
+    cursor: pointer;
 }
 
-p {
-  margin: 0;
-  padding-top: 10px;
-  padding-bottom: 10px;
-  text-decoration: underline;
-}
-
-h1 {
-  text-align: center;
-}
-
-.contentContainer {
-  width: 300px;	
-  margin: 10px auto;
-  position: relative;
-  top: 15vh; /* Position the top of #container to be at 15% of the height of the window */
-}
-
-.title {
-  display: flex;
-  justify-content: center;
-  font-size: 25px;
-  margin-top: 10px;
-}
-
-.releaseDate {
-  display: flex;
-  justify-content: center;
-  margin-top: 35px;
-  font-size: 30px;
-  font-weight: bold;
-  color: #162b2d;
-}
-.inputArea {
-  width: 298px;
-  text-align: center;
-}
-
-.inputBoxArea{
-  display:inline-block;
-  border-color: #72C1B0;
-  border: 1px solid #45BCD2;
-
-}
-
-.plot {
-  display: flex;
-  justify-content: center;
-  margin-top: 45px;
-  margin-left: 25px;
-  margin-right: 10px;
-}
-
-.headerTextElements {
-  display: flex;
-  flex-direction: column;
+.result {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    opacity: 1.0;
 }
 
 .liPosters {
   height: 69px;
   width: 46px;
+  opacity: 1.0;
 }
 
-.detailsPoster {
-  max-height: 450px;
-  max-width: 300x;
-  border-radius: 8px 0px 0px 8px;
-}
-
-.overviewDetailsArea {
-  display:flex;
-  flex-wrap:wrap;
-  flex-direction:row;
-  justify-content:flex-start;
-  align-items:stretch;
-  margin-top: 25px;
-  text-align: center;
-}
-
-/*TODO: add media query for TM, so it adjusts correctly on mobile*/
-.tmdbTM {
-  position:absolute;
-  bottom:0;
-  right:0;
-  margin: 10px;
-  font-size: 10px;
-}
-
-.footer {
-  display: flex;
-  justify-content: space-between;
-  border: 1px solid rgba(0,0,0,0.50);
-  border-bottom: none;
-  padding: 10px;
-}
-.image {
-  margin-right: 5px;
+.result {
+  margin: auto;
 }

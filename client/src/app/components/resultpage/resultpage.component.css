@@ -1,117 +1,49 @@
 @import url('https://fonts.googleapis.com/css?family=Roboto');
 
-/*
- * Padding pushes away from things inside the div.
- * Margin pushes away from other elements.
- */
-body {
- background-color: #efefef;
-}
 
-* {
-  font-family: Roboto;
-  font-size: 15px;
-  /*helps normalize sizes for width/height */
-  box-sizing: border-box;
-}
-
-ol {
-  margin: 0;
-  padding-left: 0;
-  list-style: none;
-}
-
-li {
-  list-style: none;
-  padding: 5px;
-  border: 1px solid #d5d6d5;
-  /* flexing so things will be inline */
-  display: flex;
-  color:#583c3c;
-  cursor:pointer;
-
-}
-
-p {
-  margin: 0;
-  padding-top: 10px;
-  padding-bottom: 10px;
-  text-decoration: underline;
-}
-
-h1 {
-  text-align: center;
+div {
+display: block;
 }
 
 .contentContainer {
-  width: 300px;	
-  margin: 10px auto;
-  position: relative;
-  top: 15vh; /* Position the top of #container to be at 15% of the height of the window */
-}
-
-.detailsContainer {
-  display: flex;
-  position: absolute;
-  background:rgba(223,223,223, 0.9);
-  color: black;
-  width: 800px;
-  box-shadow: 0 0 75px 25px rgba(0, 0, 0, .15);
-  top: 15vh;
-  left: calc(50% - 800px / 2);
-  border-radius: 8px;
-}
-
-.mainInfo {
-  display: flex;
-  flex-direction: column;
-  padding: 10px;
-}
-
-.title {
-  display: flex;
-  justify-content: center;
-  font-size: 25px;
-  margin-top: 10px;
-}
-
-.releaseDate {
-  display: flex;
-  justify-content: center;
-  margin-top: 35px;
-  font-size: 30px;
-  font-weight: bold;
-  color: #162b2d;
-}
-.inputArea {
-  width: 298px;
-  text-align: center;
-}
-
-.inputBoxArea{
-  display:inline-block;
-  border-color: #72C1B0;
-  border: 1px solid #45BCD2;
-
-}
-
-.plot {
-  display: flex;
-  justify-content: center;
-  margin-top: 45px;
-  margin-left: 25px;
-  margin-right: 10px;
-}
-
-.headerTextElements {
-  display: flex;
-  flex-direction: column;
+  max-width: 1024px;
+  margin: 0px auto 0px auto;
+  background-color: rgba(239,239,239, 0.9);
+  border-radius: 8px 8px 8px 8px;
 }
 
 .detailsPoster {
-  max-height: 450px;
-  max-width: 300x;
   border-radius: 8px 0px 0px 8px;
+}
+.detailsTopContainer {
+    display: flex;
+    background-color: rgba(239,239,239, 0.8);
+    border-radius: 8px 8px 8px 8px;
+}
+
+.ratings {
+  display: flex;
+  flex-direction: row;
+}
+/*makes things space apart*/
+.rating {
+margin: auto;
+}
+
+.title {
+    display: flex;
+    justify-content: center;
+    font-size: 25px;
+    margin-top: 10px;
+}
+
+.airDate {
+    display: flex;
+    justify-content: center;
+    margin-top: 35px;
+    font-size: 30px;
+    font-weight: bold;
+    color: #ac0000;
 }
 
 .overviewDetailsArea {
@@ -149,6 +81,20 @@ h1 {
     }
 }
 
+.topText {
+    display: flex;
+    flex-direction: column;
+    padding: 15px;
+}
+
+.title {
+    display: flex;
+    align-items: center;
+}
+
+.overview {
+  margin-top: auto;
+}
 .searchAgain {
   display: flex;
   justify-content:flex-end;
@@ -164,31 +110,54 @@ h1 {
   margin-right: 5px;
 }
 
-/*TODO: add media query for TM, so it adjusts correctly on mobile*/
-.tmdbTM {
-  position:absolute;
-  bottom:0;
-  right:0;
-  margin: 10px;
-  font-size: 10px;
+p {
+  margin: 0;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  text-decoration: underline;
+}
+body {
+ background-color: #efefef;
 }
 
 .footer {
+  min-height: 240px;
+  padding: 30px;
   display: flex;
   justify-content: space-between;
-  border: 1px solid rgba(0,0,0,0.50);
-  border-bottom: none;
-  padding: 10px;
 }
 
-.ratings {
+.bottomStatic {
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
 }
-/*makes things space apart*/
-.rating {
-margin: auto;
+
+.bottomHeader {
+    text-align: center;
 }
-.image {
-  margin-right: 5px;
+.actors {
+    max-width: 645px;
+    text-align: center;
+}
+
+.actor {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 10px 0;
+    min-width: 200px;
+}
+
+.castMembers {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.member {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 10px 0;
+    min-width: 200px;
 }

@@ -1,47 +1,80 @@
 <div>
   <div class="contentContainer">
-    <div class="resultListArea">
-      <div class="resultListText">
-        <div class="detailsContainer">
-          <img class="detailsPoster" />
-          <div class="mainInfo">
-            <div>
-              <div class="ratings">
-                <div class="rating">
-                  <img class="image" />
-                  <span>thing1</span>
-                </div>
-                <div class="rating">
-                  <img class="image" />
-                  <span>thing2</span>
-                </div>
-                <div class="rating">
-                  <img class="image" />
-                  <span>thing3</span>
-                </div>
-              </div>
-              <div class="title">{{tmdbDetails.show}}</div>
-              <div class="releaseDate">{{airDate}}</div>
-              <div class="plot">{{tmdbDetails.overview}}</div>
-              <div class="overviewDetailsArea">
-                <div class="left">
-                  <div class="details">
-                    <p>Country</p>Country</div>
-                  <div class="details">
-                    <p>Rating</p>rating</div>
-                </div>
-                <div class="right">
-                  <div class="details">
-                    <p>Genre</p>Genre </div>
-                  <div class="details">
-                    <p>Runtime</p>Runtime</div>
-                </div>
-              </div>
-            </div>
-            <div class="searchAgain"><a class="returnText" href="/">Search Again</a></div>
+    <div class="detailsTopContainer" style="z-index: 4;">
+      <img class="detailsPoster" src="https://image.tmdb.org/t/p/w300/{{tmdbDetails.poster}}" />
+      <div class="topText">
+        <div class="ratings">
+          <div class="rating">
+            <img class="image" />
+            <span>{{tmdbDetails.rating}}</span>
+          </div>
+          <div class="rating">
+            <img class="image" />
+            <span>{{tvdbInfo.tvdbDetails.siteRating}}</span>
+          </div>
+          <div class="rating">
+            <img class="image" />
+            <span>thing3</span>
           </div>
         </div>
+        <div class="title">{{tmdbDetails.show}}</div>
+        <div class="airDate">{{airDate}}</div>
+        <div class="overview">{{tmdbDetails.overview}}</div>
+        <div class="overviewDetailsArea">
+          <div class="left">
+            <div class="details">
+              <p>Status</p>{{tvdbInfo.tvdbDetails.status}}</div>
+            <div class="details">
+              <p>Network</p>Fox</div>
+          </div>
+          <div class="right">
+            <div class="details">
+              <p>Runtime</p> {{tvdbInfo.tvdbDetails.runtime}} </div>
+            <div class="details">
+              <p>Created by</p>Node231</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="footer">
+      <div class="bottomStatic">
+        <div class="details">
+          <p>Airtime</p> {{tvdbInfo.tvdbDetails.airsDayOfWeek}} {{tvdbInfo.tvdbDetails.airsTime}} </div>
+        <div class="details">
+          <p>Rating</p>{{tvdbInfo.tvdbDetails.rating}} </div>
+
+        <div class="details">
+          <p>Genre</p>Genre</div>
+        <div class="details">
+          <p>Runtime</p>{{tvdbInfo.tvdbDetails.runtime}}</div>
+      </div>
+      <div class="cast">
+        <div class="bottomHeader"> Cast </div>
+        <div class="castMembers">
+          <div class="member">
+            <span class="character">Bob Belcher</span>
+            <span class="actor">H. Jon Benjamin</span>
+          </div>
+          <div class="member">
+            <span class="character">Bob Belcher</span>
+            <span class="actor">H. Jon Benjamin</span>
+          </div>
+          <div class="member">
+            <span class="character">Bob Belcher</span>
+            <span class="actor">H. Jon Benjamin</span>
+          </div>
+          <div class="member">
+            <span class="character">Bob Belcher</span>
+            <span class="actor">H. Jon Benjamin</span>
+          </div>
+          <div class="member">
+            <span class="character">Bob Belcher</span>
+            <span class="actor">H. Jon Benjamin</span>
+          </div>
+        </div>
+      </div>
+      <div class="searchAgain"><a class="returnText" href="/">Search Again</a></div>
     </div>
   </div>
-</div>
 </div>

@@ -14,7 +14,6 @@ declare var particlesJS: any;
 })
 
 export class LandingPage {
-  header = 'WhenDoesItAir';
   keystroke: string;
   shows = [];
   placeholderText: string;
@@ -25,7 +24,7 @@ export class LandingPage {
 
   ngOnInit(): void {
     //particles
-    particlesJS.load('particles-js', 'particles.json', null);
+    /*particlesJS.load('particles-js', 'particles.json', null);*/
 
     //for placeholder text
     this.backgroundPlaceholder = this.TitleService.getBackdrop()
