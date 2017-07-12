@@ -13,6 +13,7 @@ import 'rxjs/add/observable/of';
 @Injectable()
 export class TitleService {
   tmdbDetails: Object = [];
+  backgroundurl: string;
 
   setTitle(tmdbDetails) {
     this.tmdbDetails = tmdbDetails;
@@ -51,5 +52,14 @@ export class TitleService {
     }
     return nameBackground;
   }
+
+  setBackground(backgroundurl) {
+    this.backgroundurl = backgroundurl;
+  }
+
+  getBackground() {
+    return 'https://image.tmdb.org/t/p/w1920' + this.backgroundurl;
+  }
+
 
 }

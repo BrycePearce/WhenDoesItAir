@@ -23,10 +23,10 @@ export class LandingPage {
   }
 
   ngOnInit(): void {
-    //particles
-    /*particlesJS.load('particles-js', 'particles.json', null);*/
+    // particles
+    /* particlesJS.load('particles-js', 'particles.json', null);*/
 
-    //for placeholder text
+    // for placeholder text
     this.backgroundPlaceholder = this.TitleService.getBackdrop()
   }
 
@@ -34,11 +34,15 @@ export class LandingPage {
   getKey(keystroke) {
     this.TaskService.addKey(keystroke)
       .subscribe(res => {
-        this.shows = res.data;
+        this.shows = res.data.splice(0,6);
       });
   }
   // set the show value
   setTitle(tmdbDetails) {
-    this.TitleService.setTitle(tmdbDetails)
+    this.TitleService.setTitle(tmdbDetails);
+  }
+    // set the backdrop value
+  setBackground(backdrop) {
+    this.TitleService.setBackground(backdrop);
   }
 }

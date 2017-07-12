@@ -41,7 +41,7 @@ app.get('/', function (req, res) {
 app.use(function (req, res, next) {
   var currTime = Date.now();
   if (currTime - prevTime >= 84600) { //23.5 hours in seconds 
-    console.log(currTime + " - " + prevTime + " >= " + 84600)
+    console.log(currTime - prevTime + " >= " + 84600)
     prevTime = currTime;
     request
       .get("https://api.thetvdb.com/refresh_token")
@@ -79,6 +79,12 @@ app.use(function (req, res, next) {
 app.use('/api', tvdb); //http://localhost:8080/api/tvdb
 app.use('/api', episode); //http://localhost:8080/api/episode
 app.use('/api', tvdbDetails); //http://localhost:8080/api/episode
+
+//send main page if bad route hit (need this for Angular 2 render components correctly sorta)
+app.get('*', function (req, res) {
+  res.sendFile(path.resolve(__dirname + '/client/dist/index.html'));
+});
+
 //always last so you can make sure everything else is loaded before accepting connections.
 app.listen(app.get('port'), function () {
   console.log("Express started on port: " + app.get('port'));

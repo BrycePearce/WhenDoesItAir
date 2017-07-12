@@ -5,7 +5,7 @@
       <input type="text" autoComplete="off" placeholder={{backgroundPlaceholder.info.placeholderText}} [(ngModel)]="keystroke"
         (ngModelChange)="getKey($event)">
       <div class="results-list">
-        <li (click)="setTitle(list)" [routerLink]="['/details', list.id]" *ngFor="let list of shows">
+        <li (click)="setTitle(list); setBackground(list.backdrop)" [routerLink]="['/details', list.id]" *ngFor="let list of shows">
           <img class="liPosters" src="https://image.tmdb.org/t/p/w92/{{list.poster}}" />
           <span class="result">{{list.show}}</span>
           <span class="year">{{list.year}}</span>
@@ -13,5 +13,4 @@
       </div>
     </div>
   </div>
-
-  <router-outlet></router-outlet>
+</div>

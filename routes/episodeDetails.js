@@ -11,7 +11,6 @@ router.post('/episode', function (req, res, next) {
       if (err || firstResponse.status != 200) {
         return null;
       } else {
-        console.log(firstResponse.body.tvdb_id);
         request
           .get("https://api.thetvdb.com/series/" + firstResponse.body.tvdb_id + "/episodes")
           .set('Accept', 'application/json')

@@ -20,11 +20,23 @@ export class ResultPage implements OnInit {
   sub: any;
   airDate: string;
   episodesInfo = [];
+  genre = [];
+  actor = [];
+  characters = [];
   tmdbDetails: Object;
   country = "";
   tvdbId: string;
   tvdbInfo: Object;
-
+  tvdbRating: string;
+  status: string;
+  airday: string;
+  airtime: string;
+  contentRating: string;
+  network: string;
+  runtime: string;
+  backdrop: string;
+  tvdbImage: string;
+  tmdbImage: string;
   constructor(
     private route: ActivatedRoute, // for our route params
     private TaskService: TaskService,  //inject our taskService into our LandingPage
@@ -32,12 +44,21 @@ export class ResultPage implements OnInit {
   ) { }
 
   ngOnInit(): void {
+    this.backdrop = this.TitleService.getBackground();
+    document.body.style.background = "url(" + this.backdrop + ")";
+    this.tvdbImage = '../../../assets/icon.png';
+    this.tmdbImage = '../../../assets/tmdb.png';
+
+
     //set our data from the landingpage/service to our details object
     this.tmdbDetails = this.TitleService.getTitle();
+    console.log("tmdbDetails");
     console.log(this.tmdbDetails);
-    // background
-    //document.body.style.backgroundImage = "url('https://image.tmdb.org/t/p/w1920" +this.tmdbDetails.backdrop + "')"; on second thought, I'll just do backdrops in the landing page
-    // grab our ID 
+    // handle external load
+    if (this.tmdbDetails === []) {
+      console.log("asddddddddddddddddddddddddd");
+    }
+    // grab our ID
     this.sub = this.route.params.subscribe(params => {
       this.tmdbid = params['id'];
       // In a real app: dispatch action to load the details here.
@@ -62,11 +83,12 @@ export class ResultPage implements OnInit {
         });
 
         //temporary solution for blank first values
-        if (futureArray[0] === "") {
+        if (futureArray[0] === "" || !futureArray[0]) {
+          if (futureArray.length === 0) { this.airDate = "No airtimes available.";}
           for (let i = 1; i <= futureArray.length; i += 1) {
-            if (futureArray[i] !== "") {
-              console.log(futureArray[i]);
-              console.log("test");
+            if (futureArray[i] === "" || futureArray[i] === undefined || futureArray[i] === null) {
+              this.airDate = "No airtimes available.";
+            } else {
               this.airDate = moment(futureArray[i]).endOf('day').fromNow();
               break;
             }
@@ -78,9 +100,22 @@ export class ResultPage implements OnInit {
         this.tvdbInfo = this.TaskService.tvdbDetails(this.tvdbId)
           .subscribe(res => {
             this.tvdbInfo = res;
-            console.log("response from tvdbDetails");
-            console.log(res);
+            this.genre = res.tvdbDetails.genre;
+            this.actor = res.actorInfo;
+            this.tvdbRating = res.tvdbDetails.siteRating;
+            this.contentRating = res.tvdbDetails.rating;
+            this.status = res.tvdbDetails.status;
+            this.airday = res.tvdbDetails.airsDayOfWeek;
+            this.airtime = res.tvdbDetails.airsTime;
+            this.network = res.tvdbDetails.network;
+            this.runtime = res.tvdbDetails.runtime;
           });
       });
+  }
+
+  // takes a name like 'some / name / here'
+  // returns only 'some'
+  firstRole(roles) {
+    return roles.split('/')[0].trim();
   }
 }
