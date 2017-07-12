@@ -23,7 +23,7 @@ export class ResultPage implements OnInit {
   genre = [];
   actor = [];
   characters = [];
-  tmdbDetails: Object;
+  tmdbDetails: any;
   country = "";
   tvdbId: string;
   tvdbInfo: Object;
@@ -37,6 +37,7 @@ export class ResultPage implements OnInit {
   backdrop: string;
   tvdbImage: string;
   tmdbImage: string;
+  poster: string;
   constructor(
     private route: ActivatedRoute, // for our route params
     private TaskService: TaskService,  //inject our taskService into our LandingPage
@@ -52,18 +53,22 @@ export class ResultPage implements OnInit {
 
     //set our data from the landingpage/service to our details object
     this.tmdbDetails = this.TitleService.getTitle();
-    console.log("tmdbDetails");
-    console.log(this.tmdbDetails);
-    // handle external load
-    if (this.tmdbDetails === []) {
-      console.log("asddddddddddddddddddddddddd");
-    }
-    // grab our ID
+    this.poster = this.tmdbDetails.poster; // I make this.tmdbDetails just so I can access this property here. Super sloppy, remove this when we append to response noted in tmdb route
+        // grab our ID
     this.sub = this.route.params.subscribe(params => {
       this.tmdbid = params['id'];
       // In a real app: dispatch action to load the details here.
     });
-
+    
+    // handle external load
+    if ((this.tmdbDetails && (Object.keys(this.tmdbDetails).length === 0))) {
+    this.TaskService.tmdbDetails(this.tmdbid)
+      .subscribe(res => {
+        document.body.style.background = "url(" + res.data.backdrop_path + ")";
+        this.tmdbDetails = res.data;
+        this.poster = res.data.poster_path;
+      });
+    }
     //send our id to our selectShow service, which returns our results
     this.TaskService.selectShow(this.tmdbid)
       .subscribe(res => {
@@ -94,7 +99,6 @@ export class ResultPage implements OnInit {
             }
           }
         } else { this.airDate = moment(futureArray[0]).endOf('day').fromNow(); }
-        console.log(futureArray);
 
 
         this.tvdbInfo = this.TaskService.tvdbDetails(this.tvdbId)

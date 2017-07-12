@@ -8,6 +8,8 @@ require('dotenv').config();
 var tvdb = require('./routes/tvdb');
 var episode = require('./routes/episodeDetails');
 var tvdbDetails = require('./routes/tvdbDetails');
+var tmdb = require('./routes/tmdbDetails');
+
 
 let prevTime = 0;
 
@@ -79,6 +81,7 @@ app.use(function (req, res, next) {
 app.use('/api', tvdb); //http://localhost:8080/api/tvdb
 app.use('/api', episode); //http://localhost:8080/api/episode
 app.use('/api', tvdbDetails); //http://localhost:8080/api/episode
+app.use('/api', tmdb); //http://localhost:8080/api/tmdb
 
 //send main page if bad route hit (need this for Angular 2 render components correctly sorta)
 app.get('*', function (req, res) {

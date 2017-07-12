@@ -20,7 +20,6 @@ export class TaskService {
     console.log("select show being called");
     var headers = new Headers();
     headers.append('Content-Type', 'application/json');
-    //keystroke here is going to be our req.body data in the recieving route
     return this.http.post("http://localhost:8080/api/episode", { tmdbId: id }, { headers: headers })
       .map(res => res.json());
   }
@@ -32,6 +31,15 @@ export class TaskService {
     //keystroke here is going to be our req.body data in the recieving route
     return this.http.post("http://localhost:8080/api/tvdbDetails", { tvdbId: tvdbId }, { headers: headers })
       .map(res => res.json());
+  }
 
+    // tmdb details for external load
+  tmdbDetails(tmdbId) {
+    console.log("tmdbDetails being called. ID = " + tmdbId);
+    var headers = new Headers();
+    headers.append('Content-Type', 'application/json');
+    //keystroke here is going to be our req.body data in the recieving route
+    return this.http.post("http://localhost:8080/api/tmdb", { tmdbId: tmdbId }, { headers: headers })
+      .map(res => res.json());
   }
 }

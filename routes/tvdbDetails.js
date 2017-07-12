@@ -25,7 +25,6 @@ router.post('/tvdbDetails', function (req, res, next) {
               return res.json({ tvdbDetails: response.body.data, actorInfo: responseNext.body.data.slice(0, 5) });
             }
           });
-
       }
     });
 });

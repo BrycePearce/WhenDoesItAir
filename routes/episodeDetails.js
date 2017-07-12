@@ -17,7 +17,6 @@ router.post('/episode', function (req, res, next) {
           .set('Authorization', 'Bearer ' + req.app.get('jsontoken'))
           .end(function (err, response) {
             if (err || response.status != 200) {
-              console.log(err);
               return null;
             } else {
               return res.json({ series: response.body.data, tvdbId: firstResponse.body.tvdb_id  });
