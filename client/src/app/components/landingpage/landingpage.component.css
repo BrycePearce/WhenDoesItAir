@@ -64,6 +64,11 @@ li {
     cursor: pointer;
 }
 
+a {
+    color: inherit; /* blue colors for links too */
+  text-decoration: inherit; /* no underline */
+}
+
 .result {
     white-space: nowrap;
     overflow: hidden;
@@ -80,3 +85,4 @@ li {
 .result {
   margin: auto;
 }
+

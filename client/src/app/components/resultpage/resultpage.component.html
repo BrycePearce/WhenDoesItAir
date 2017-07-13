@@ -5,7 +5,7 @@
       <div class="topText">
         <div class="ratings">
           <div class="rating">
-            <span class="ratingtext">{{tmdbDetails.rating}}</span>
+            <span class="ratingtext">{{tmdbRating}}</span>
             <img class="image" src={{tmdbImage}}/>
           </div>
           <div class="rating">
@@ -53,7 +53,9 @@
           <p>Runtime</p>{{runtime}} min</div>
       </div>
       <div class="cast">
-        <div class="bottomHeader"> Cast </div>
+        <div class="bottomHeader">
+          <p>Cast</p>
+        </div>
         <div class="castMembers">
           <div class="member" *ngFor="let character of actor">
             <span class="character">{{firstRole(character.role)}}</span>

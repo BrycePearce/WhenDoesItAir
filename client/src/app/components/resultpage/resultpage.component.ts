@@ -15,7 +15,7 @@ import * as moment from 'moment';
   providers: [TaskService] // *** todo: Find out if these should be here or in route stuff *** why does adding TitleService to this array break it?
 })
 export class ResultPage implements OnInit {
-  tmdbid: number;
+  tmdbid: number;  
   tvdbid: number;
   sub: any;
   airDate: string;
@@ -38,6 +38,7 @@ export class ResultPage implements OnInit {
   tvdbImage: string;
   tmdbImage: string;
   poster: string;
+  tmdbRating: string;
   constructor(
     private route: ActivatedRoute, // for our route params
     private TaskService: TaskService,  //inject our taskService into our LandingPage
@@ -53,7 +54,9 @@ export class ResultPage implements OnInit {
 
     //set our data from the landingpage/service to our details object
     this.tmdbDetails = this.TitleService.getTitle();
+    console.log(this.tmdbDetails);
     this.poster = this.tmdbDetails.poster; // I make this.tmdbDetails just so I can access this property here. Super sloppy, remove this when we append to response noted in tmdb route
+    this.tmdbRating = this.tmdbDetails.rating; // same as above
         // grab our ID
     this.sub = this.route.params.subscribe(params => {
       this.tmdbid = params['id'];
@@ -64,9 +67,11 @@ export class ResultPage implements OnInit {
     if ((this.tmdbDetails && (Object.keys(this.tmdbDetails).length === 0))) {
     this.TaskService.tmdbDetails(this.tmdbid)
       .subscribe(res => {
-        document.body.style.background = "url(" + res.data.backdrop_path + ")";
+        this.backdrop = "https://image.tmdb.org/t/p/w1920" + res.data.backdrop_path; 
+        document.body.style.background = "url(" + this.backdrop + ")";
         this.tmdbDetails = res.data;
         this.poster = res.data.poster_path;
+        this.tmdbRating = res.data.vote_average;
       });
     }
     //send our id to our selectShow service, which returns our results

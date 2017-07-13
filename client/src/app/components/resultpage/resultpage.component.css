@@ -16,9 +16,6 @@ body {
   background-position: center top;
   background-repeat: no-repeat;
 }
-/*div {
-display: block;
-}*/
 
 .contentContainer {
   max-width: 1024px;
@@ -59,11 +56,23 @@ display: block;
 }
 
 .airDate {
-    display: flex;
+    display:flex;
+    padding: 20px;
+    background: #222222;
+    border: 1px solid #32383E;
+    box-shadow: inset 0px 1px 5px 0px rgba(0, 0, 0, 0.4);
+    border-radius: 4px;
+    margin-top: auto;
+    display: inline-table;
+    /*margin-left: 37%;*/
+    justify-content: center;
+    margin-left:auto; 
+    margin-right:auto;
+    /*display: flex;
     justify-content: center;
     margin-top: 35px;
     font-size: 30px;
-    font-weight: bold;
+    font-weight: bold;*/
     color: #ac0000;
 }
 
