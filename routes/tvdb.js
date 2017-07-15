@@ -14,9 +14,13 @@ router.post('/tvdb', function (req, res, next) {
       if (err || response.status != 200) {
         return null;
       } else {
+        let overview = response.body.results[0].overview;
+        if (overview === "" || overview === undefined || response.body.results[0] === undefined) {
+          overview = "No show description available";
+        }
         let resultItems = response.body.results.map((show, index) => {
           // TODO: cleanup not found results here 
-          return { id: show.id, poster: show.poster_path, rating: show.vote_average, backdrop: show.backdrop_path, country: show.origin_country, orglanguage: show.original_language, show: show.name, overview: show.overview, year: show.first_air_date.substring(0,4)};
+          return { id: show.id, poster: show.poster_path, rating: show.vote_average, backdrop: show.backdrop_path, country: show.origin_country, orglanguage: show.original_language, show: show.name, overview: overview, year: show.first_air_date.substring(0,4)};
         });
         //service is expecting a json result, and we want it as one object, so send it back like so
         return res.json({ data: resultItems });

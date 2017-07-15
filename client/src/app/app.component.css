@@ -4,9 +4,17 @@ a {
 }
 
 h1 {
-  color: #720606;
+  font-family: Calibri;
+  font-style: normal;
+  font-variant: normal;
+	font-weight: 500;
+  font-size: 7em;
+  color: #fefefe;
   text-align: center;
-  text-shadow: 1px 0 0 #000, 0 -1px 0 #000, 0 1px 0 #000, -1px 0 0 #000;
+  text-shadow: -1px 4px 0px rgba(125,125,127, 1);
+  position: relative;
+  display: inline;
+  left: calc(50% - 822px/2);
 }
 
 .tmdbTM {

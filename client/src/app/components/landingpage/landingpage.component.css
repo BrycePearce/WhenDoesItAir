@@ -8,11 +8,7 @@
 * {
 box-sizing: border-box;
 }
-h1 {
-  color: #720606;
-  text-align: center;
-  text-shadow: 1px 0 0 #000, 0 -1px 0 #000, 0 1px 0 #000, -1px 0 0 #000;
-}
+
 .landingContainer {
   max-width: 1024px;
   margin: 0px auto 0px auto;
@@ -20,31 +16,26 @@ h1 {
 .searchArea {
   max-width: 624px;
   margin: auto;
-  margin-top: 30vh;
+  margin-top: 24vh;
 }
 
 input {
   background-color: rgba(black, .5);
-  box-shadow: inset 0px 0px 15px 1px rgba(0,0,0,0.50);
-  border: 2px solid white;
+  box-shadow: inset 0px 0px 10px 1px;
   border-radius: 4px;
   font-size: 36px;
   letter-spacing: 1.5px;
   text-align: center;
   height: 72px;
   width: 100%;
-  border-color: #720606;
+  border-color: rgb(18,18,18);
 }
 
 .background {
-  position: absolute;
-  top: 0;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  background-size: cover;
-  background-position: center top;
   background-repeat: no-repeat;
+  background-position: center center;
+  background-attachment: fixed;
+  background-size: cover;
 }
 
 .results-list{
@@ -57,15 +48,14 @@ input {
 li {
     list-style: none;
     padding: 5px;
-    border: 1px solid #720606;
+    border: 1px solid rgb(18,18,18);
     display: flex;
-    color: black;
     background: rgba(128,128,128,0.5);
     cursor: pointer;
 }
 
 a {
-    color: inherit; /* blue colors for links too */
+  color: inherit; /* blue colors for links too */
   text-decoration: inherit; /* no underline */
 }
 
@@ -85,4 +75,3 @@ a {
 .result {
   margin: auto;
 }
-

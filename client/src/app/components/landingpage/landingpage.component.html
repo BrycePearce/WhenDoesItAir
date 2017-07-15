@@ -1,6 +1,5 @@
-<div class="background" [ngStyle]="{'background-image':'url(' + backgroundPlaceholder.info.name + ')'}">
+<div>
   <div class="landingContainer">
-    <h1><a href="/">When Does it Air</a></h1>
     <div class="searchArea">
       <input type="text" autoComplete="off" placeholder={{backgroundPlaceholder.info.placeholderText}} [(ngModel)]="keystroke"
         (ngModelChange)="getKey($event)">

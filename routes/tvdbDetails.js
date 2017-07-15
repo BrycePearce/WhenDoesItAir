@@ -22,7 +22,11 @@ router.post('/tvdbDetails', function (req, res, next) {
               console.log(err);
               return null;
             } else {
-              return res.json({ tvdbDetails: response.body.data, actorInfo: responseNext.body.data.slice(0, 5) });
+              let actors = [];
+              if (responseNext.body.data) {
+                actors = responseNext.body.data.slice(0, 5)
+              }
+              return res.json({ tvdbDetails: response.body.data, actorInfo: actors });
             }
           });
       }

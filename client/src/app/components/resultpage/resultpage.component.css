@@ -7,14 +7,10 @@
 }
 
 body {
-  position: absolute;
-  top: 0;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  background-size: cover;
-  background-position: center top;
   background-repeat: no-repeat;
+  background-position: center center;
+  background-attachment: fixed;
+  background-size: cover;
 }
 
 .contentContainer {
@@ -64,16 +60,10 @@ body {
     border-radius: 4px;
     margin-top: auto;
     display: inline-table;
-    /*margin-left: 37%;*/
     justify-content: center;
     margin-left:auto; 
     margin-right:auto;
-    /*display: flex;
-    justify-content: center;
-    margin-top: 35px;
-    font-size: 30px;
-    font-weight: bold;*/
-    color: #ac0000;
+    color: #00a111;
 }
 
 .overviewDetailsArea {
@@ -84,16 +74,19 @@ body {
   align-items:stretch;
   margin-top: 25px;
   text-align: center;
+  margin-left: 5%;
 }
 
 .left { 
   order:1;  
-  flex-basis:100%; 
+  flex-basis:100%;
+  width: 50%;
 }
 
 .right {
   order:2; 
   flex-basis:100%;
+  width: 50%;
  }
 
 @media screen and (min-width:600px) {
@@ -116,6 +109,7 @@ body {
     display: flex;
     flex-direction: column;
     padding: 15px;
+    width: 100%
 }
 
 .title {
@@ -125,19 +119,26 @@ body {
 
 .overview {
   margin-top: auto;
+  margin-left: 5%;
+  margin-right: 5%;
+  max-height: 200px;
+  overflow-y: auto;
+  overflow-x: hidden;
 }
 .searchAgain {
   display: flex;
   justify-content:flex-end;
   align-items:flex-end;
   margin-top: auto;
+  white-space: nowrap;
 }
 
 .returnText {
-  color: white;
+  position: absolute;
+  color: #00a111;
   font-size: 30px;
   text-decoration: none;
-  box-shadow: inset 0 -3px 0 #ac0000;
+  box-shadow: inset 0 -3px 0 #004107;
   margin-right: 5px;
 }
 
@@ -146,7 +147,7 @@ p {
   padding-top: 10px;
   padding-bottom: 10px;
   text-decoration: underline;
-  color:white;
+  color:#00a111;
 }
 body {
  background-color: #efefef;
@@ -154,7 +155,9 @@ body {
 
 .footer {
   min-height: 240px;
-  padding: 30px;
+  padding-top: 30px;
+  padding-left: 30px;
+  padding-right: 30px;
   display: flex;
   justify-content: space-between;
 }
@@ -162,6 +165,8 @@ body {
 .bottomStatic {
   display: flex;
   flex-direction: column;
+  width: 250px;
+  max-width: 250px;
 }
 
 .bottomHeader {
@@ -182,7 +187,8 @@ body {
 
 .cast {
     margin: auto;
-    margin-left: 190px;
+    margin-left: 12%;
+    /*margin-left: 190px;*/
 }
 .castMembers {
     display: flex;

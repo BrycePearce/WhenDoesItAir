@@ -5,6 +5,7 @@ import { Location } from '@angular/common';
 import { TaskService } from '../../services/task.service'; //task.service.ts
 import { TitleService } from '../../services/title.service';
 import * as moment from 'moment';
+declare var particlesJS: any;
 //import { AppComponent } from '../../app.component';
 @Component({
   //how we select this component
@@ -39,11 +40,12 @@ export class ResultPage implements OnInit {
   tmdbImage: string;
   poster: string;
   tmdbRating: string;
+  overview: string;
   constructor(
     private route: ActivatedRoute, // for our route params
     private TaskService: TaskService,  //inject our taskService into our LandingPage
     private TitleService: TitleService
-  ) { }
+  ) { } 
 
   ngOnInit(): void {
     this.backdrop = this.TitleService.getBackground();
@@ -57,6 +59,7 @@ export class ResultPage implements OnInit {
     console.log(this.tmdbDetails);
     this.poster = this.tmdbDetails.poster; // I make this.tmdbDetails just so I can access this property here. Super sloppy, remove this when we append to response noted in tmdb route
     this.tmdbRating = this.tmdbDetails.rating; // same as above
+    this.overview = this.tmdbDetails.overview; // ^
         // grab our ID
     this.sub = this.route.params.subscribe(params => {
       this.tmdbid = params['id'];
@@ -69,9 +72,11 @@ export class ResultPage implements OnInit {
       .subscribe(res => {
         this.backdrop = "https://image.tmdb.org/t/p/w1920" + res.data.backdrop_path; 
         document.body.style.background = "url(" + this.backdrop + ")";
+        particlesJS.load('particles-js', 'particles.json', null);
         this.tmdbDetails = res.data;
         this.poster = res.data.poster_path;
         this.tmdbRating = res.data.vote_average;
+        this.overview = res.data.overview
       });
     }
     //send our id to our selectShow service, which returns our results
