@@ -11,10 +11,10 @@ h1 {
   font-size: 7em;
   color: #fefefe;
   text-align: center;
-  text-shadow: -1px 4px 0px rgba(125,125,127, 1);
+  text-shadow: -1px -4px 0px rgba(18,18,18, 1);
   position: relative;
   display: inline;
-  left: calc(50% - 822px/2);
+  left: calc(50% - 822px/2); /* not working on mobile */
 }
 
 .tmdbTM {

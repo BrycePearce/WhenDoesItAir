@@ -18,7 +18,7 @@
           </div>
         </div>
         <div class="title">{{tmdbDetails.show}}</div>
-        <div class="airDate">{{airDate}}</div>
+        <div class="airDate">{{finalAirtime}}</div>
         <div class="overview">{{overview}}</div>
         <div class="overviewDetailsArea">
           <div class="left">
@@ -34,7 +34,7 @@
             <div class="details">
               <p>Airtime</p> {{airday}} {{airtime}} </div>
             <div class="details">
-              <p>Created by</p>Node231</div>
+              <p>Airtime for {{userTimezone}}</p>{{localReleaseTime}}</div>
           </div>
         </div>
       </div>
@@ -43,7 +43,7 @@
     <div class="footer">
       <div class="bottomStatic">
         <div class="details">
-          <p>Language</p> {{tmdbDetails.orglanguage}} </div>
+          <p>Language</p> {{language}} </div>
         <div class="details">
           <p>Rating</p>{{contentRating}} </div>
 
