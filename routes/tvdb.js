@@ -14,7 +14,7 @@ router.post('/tvdb', function (req, res, next) {
       if (err || response.status != 200) {
         return null;
       } else {
-        if (response.body.results[0] === undefined) {
+        if (response.body.results[0] === undefined || response.body === undefined) {
           console.log("problem");
           return null;
         }

@@ -1,5 +1,5 @@
 a {
-    color: inherit; /* blue colors for links too */
+  color: inherit; /* blue colors for links too */
   text-decoration: inherit; /* no underline */
 }
 
@@ -15,6 +15,35 @@ h1 {
   position: relative;
   display: inline;
   left: calc(50% - 822px/2); /* not working on mobile */
+}
+
+@media (max-width: 30em) {
+    h1 {
+      position: absolute;
+      font-size: 2em;
+      top: 0vh;
+      left: 10vh;
+    }
+      body {
+      overflow: visible;
+  }
+}
+
+@media only screen 
+    and (min-device-width : 375px) 
+    and (max-device-width : 667px) 
+    and (orientation : landscape) 
+    and (-webkit-min-device-pixel-ratio : 2)
+{     
+  h1 {
+      position: absolute;
+      font-size: 2em;
+      top: 0vh;
+      left: 10vh;
+    }
+      body {
+      overflow: visible;
+  }
 }
 
 .tmdbTM {

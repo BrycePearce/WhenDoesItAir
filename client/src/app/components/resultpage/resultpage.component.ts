@@ -57,11 +57,14 @@ export class ResultPage implements OnInit {
   ngOnInit(): void {
     this.backdrop = this.TitleService.getBackground();
     document.body.style.background = "url(" + this.backdrop + ")";
+    document.body.style.backgroundSize = 'cover';
+    document.body.style.backgroundRepeat = 'no-repeat';
+    document.body.style.backgroundPosition = "center center";
+    document.body.style.backgroundAttachment = "fixed";
     this.tvdbImage = '../../../assets/icon.png';
     this.tmdbImage = '../../../assets/tmdb.png';
     //set our data from the landingpage/service to our details object
     this.tmdbDetails = this.TitleService.getTitle();
-    console.log(this.tmdbDetails);
     this.poster = this.tmdbDetails.poster; // I make this.tmdbDetails just so I can access this property here. Super sloppy, remove this when we append to response noted in tmdb route
     this.tmdbRating = this.tmdbDetails.rating; // same as above
     this.overview = this.tmdbDetails.overview; // ^
@@ -78,6 +81,10 @@ export class ResultPage implements OnInit {
       .subscribe(res => {
         this.backdrop = "https://image.tmdb.org/t/p/w1920" + res.data.backdrop_path; 
         document.body.style.background = "url(" + this.backdrop + ")";
+        document.body.style.backgroundSize = 'cover';
+        document.body.style.backgroundRepeat = 'no-repeat';
+        document.body.style.backgroundPosition = "center center";
+        document.body.style.backgroundAttachment = "fixed";
         particlesJS.load('particles-js', 'particles.json', null);
         this.tmdbDetails = res.data;
         this.poster = res.data.poster_path;
@@ -112,12 +119,13 @@ export class ResultPage implements OnInit {
               this.airDate = "No airtimes available.";
             } else {
               this.tempAirDate = futureArray[i];
-              this.finalAirtime = this.determineAirTime(this.tempAirDate, this.airday, this.airtime);
+              console.log(this.finalAirtime);
+              this.airDate = this.determineAirTime(this.tempAirDate, this.airday, this.airtime);
 
               break;
             }
           }
-        } else { 
+        } else {
           this.tempAirDate = futureArray[0];
           console.log("this is the string for fromNow " +  this.tempAirDate);
           this.airDate = moment(futureArray[0]).endOf('day').fromNow(); }
@@ -135,6 +143,7 @@ export class ResultPage implements OnInit {
             this.airtime = res.tvdbDetails.airsTime;
             this.network = res.tvdbDetails.network;
             this.runtime = res.tvdbDetails.runtime;
+            console.log(this.finalAirtime);
             this.finalAirtime = this.determineAirTime(this.tempAirDate, this.airday, this.airtime);
             this.localReleaseTime = this.localRelease(this.tempAirDate, this.airday, this.airtime);
             this.userTimezone = this.userTimezones();
@@ -157,24 +166,17 @@ export class ResultPage implements OnInit {
       dateTime = "No airtimes available.";
       return dateTime;
     }
-    time = time.replace(/\s+/, ""); // remove whitespace from time
     date = moment(date).format('MMMM Do YYYY');
     dateTime = date + " " + time;
     // create a moment object in the NY time zone
     let eastCoast = momentTimezone.tz(dateTime, 'MMM Do YYYY h:mmA', 'America/New_York');
     eastCoast = moment(eastCoast).fromNow();
-   // eastCoast = eastCoast.format('MMM Do YYYY h:mmA');
-   // console.log("after " + moment(eastCoast).fromNow());
-    // valculate the time fromNow, from the eastCoast
-
     return eastCoast;
   }
 
   // Sets the release time for New York as the default airing time,
   // and then converts it to your local timezone.
   localRelease(date,day,time) {
-    console.log("yee");
-    console.log(date,day,time);
     let dateTime;
         if (date === "unknown") {
       dateTime = "Unknown";

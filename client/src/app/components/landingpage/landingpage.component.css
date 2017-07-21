@@ -6,13 +6,26 @@
  */
 
 * {
-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+.selected {
+  background-color: #CFD8DC !important;
+  color: white;
+}
+
+body {
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-attachment: fixed;
+  background-size: cover;
 }
 
 .landingContainer {
   max-width: 1024px;
   margin: 0px auto 0px auto;
 }
+
 .searchArea {
   max-width: 624px;
   margin: auto;
@@ -28,7 +41,7 @@ input {
   text-align: center;
   height: 72px;
   width: 100%;
-  border-color: rgb(18,18,18);
+  border-color: rgb(18, 18, 18);
 }
 
 .background {
@@ -38,32 +51,34 @@ input {
   background-size: cover;
 }
 
-.results-list{
-    list-style: none;
-    font-size: 16px;
-    margin-top: 10px;
-    cursor: pointer;
+.results-list {
+  list-style: none;
+  font-size: 16px;
+  margin-top: 10px;
+  cursor: pointer;
 }
 
 li {
-    list-style: none;
-    padding: 5px;
-    border: 1px solid rgb(18,18,18);
-    display: flex;
-    background: rgba(128,128,128,0.5);
-    cursor: pointer;
+  list-style: none;
+  padding: 5px;
+  border: 1px solid rgb(18, 18, 18);
+  display: flex;
+  background: rgba(128, 128, 128, 0.5);
+  cursor: pointer;
 }
 
 a {
-  color: inherit; /* blue colors for links too */
-  text-decoration: inherit; /* no underline */
+  color: inherit;
+  /* blue colors for links too */
+  text-decoration: inherit;
+  /* no underline */
 }
 
 .result {
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    opacity: 1.0;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  opacity: 1.0;
 }
 
 .liPosters {
