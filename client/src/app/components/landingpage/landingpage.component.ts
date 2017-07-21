@@ -39,10 +39,12 @@ export class LandingPage {
 
   // send our keystroke to our addKey service, which returns our results
   getKey(keystroke) {
-    this.TaskService.addKey(keystroke)
-      .subscribe(res => {
-        this.shows = res.data.splice(0, 6);
-      });
+    if (keystroke) {
+      this.TaskService.addKey(keystroke)
+        .subscribe(res => {
+          this.shows = res.data.splice(0, 6);
+        });
+    }
   }
   // set the show value
   setTitle(tmdbDetails) {
