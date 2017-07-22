@@ -11,7 +11,10 @@ router.post('/tvdbDetails', function (req, res, next) {
     .end(function (err, response) {
       if (err || response.status != 200) {
         console.log(err);
-        return null;
+        return response.status({
+          success: false
+        });
+
       } else {
         request
           .get("https://api.thetvdb.com/series/" + req.body.tvdbId + "/actors")
@@ -20,13 +23,18 @@ router.post('/tvdbDetails', function (req, res, next) {
           .end(function (err, responseNext) {
             if (err || responseNext.status != 200) {
               console.log(err);
-              return null;
+              return res.status({
+                success: false
+              });
             } else {
               let actors = [];
               if (responseNext.body.data) {
                 actors = responseNext.body.data.slice(0, 5)
               }
-              return res.json({ tvdbDetails: response.body.data, actorInfo: actors });
+              return res.json({
+                tvdbDetails: response.body.data,
+                actorInfo: actors
+              });
             }
           });
       }

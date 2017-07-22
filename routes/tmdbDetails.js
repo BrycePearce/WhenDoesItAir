@@ -11,10 +11,14 @@ router.post('/tmdb', function (req, res, next) {
     .set('Accept', 'application/json')
     .end(function (err, response) {
       if (err || response.status != 200) {
-       // console.log(err);
-        return null;
+        console.log(err);
+        return res.status({
+          success: false
+        });
       } else {
-        return res.json({ data: response.body });
+        return res.json({
+          data: response.body
+        });
       }
     });
 });

@@ -1,6 +1,10 @@
 import { Injectable } from '@angular/core'; //inject this service as a dependency
 import { Http, Headers } from '@angular/http'; //http module to make requests to our api, Headers to manipulate headers
+import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/map';
+import 'rxjs/add/observable/of';
+import 'rxjs/Rx';
+import 'rxjs/add/operator/toPromise';
 @Injectable()
 export class TaskService {
   constructor(private http: Http) {
@@ -8,12 +12,31 @@ export class TaskService {
   }
   //add the new keystrokes from getResults() in app.component.ts, make api call to get results
   //post our newkeystroke to our tbdb route to query
-  addKey(newKey) {
+  addKey(keystroke): Observable<any> { // todo: change this to an http request, as it is best practice, instead of fetch
     var headers = new Headers();
     headers.append('Content-Type', 'application/json');
-    //keystroke here is going to be our req.body data in the recieving route
-    return this.http.post("http://localhost:8080/api/tvdb", { keystroke: newKey }, { headers: headers })
-      .map(res => res.json());
+    const query = "https://api.themoviedb.org/3/search/tv?api_key=";
+    return this.http.get(query + 'f016113c794da0ca4fc69f2cbeaca136' + '&language=en-US&query=' + keystroke)
+      .map(show => {
+        let res = show.json();
+
+        // grab the items we want from the response
+        let resultItems = res.results.map((show, index) => {
+          return {
+            id: show.id,
+            poster: show.poster_path,
+            rating: show.vote_average,
+            backdrop: show.backdrop_path,
+            country: show.origin_country,
+            orglanguage: show.original_language,
+            show: show.name,
+            overview: show.overview,
+            year: show.first_air_date.substring(0, 4)
+          };
+        });
+        // return our newly formed object
+        return { data: resultItems }
+      });
   }
 
   selectShow(id) {
@@ -33,7 +56,7 @@ export class TaskService {
       .map(res => res.json());
   }
 
-    // tmdb details for external load
+  // tmdb details for external load
   tmdbDetails(tmdbId) {
     console.log("tmdbDetails being called. ID = " + tmdbId);
     var headers = new Headers();

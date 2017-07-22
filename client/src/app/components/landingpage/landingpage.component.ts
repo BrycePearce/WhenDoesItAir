@@ -42,6 +42,8 @@ export class LandingPage {
     if (keystroke) {
       this.TaskService.addKey(keystroke)
         .subscribe(res => {
+          console.log("hoi");
+          console.log(res);
           this.shows = res.data.splice(0, 6);
         });
     }

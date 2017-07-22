@@ -9,17 +9,24 @@ router.post('/episode', function (req, res, next) {
     .set('Accept', 'application/json')
     .end(function (err, firstResponse) {
       if (err || firstResponse.status != 200) {
-        return null;
+        console.log("problem in /episode route");
+        return firstResponse.status;
       } else {
+        console.log(firstResponse.body);
         request
           .get("https://api.thetvdb.com/series/" + firstResponse.body.tvdb_id + "/episodes")
           .set('Accept', 'application/json')
           .set('Authorization', 'Bearer ' + req.app.get('jsontoken'))
           .end(function (err, response) {
             if (err || response.status != 200) {
-              return null;
+              return res.status({
+                success: false
+              });
             } else {
-              return res.json({ series: response.body.data, tvdbId: firstResponse.body.tvdb_id  });
+              return res.json({
+                series: response.body.data,
+                tvdbId: firstResponse.body.tvdb_id
+              });
             }
           });
       }

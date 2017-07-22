@@ -1,14 +1,14 @@
 const express = require('express');
 const path = require('path');
 let bodyParser = require('body-parser')
-var request = require('superagent');
+let request = require('superagent');
 require('dotenv').config();
 
 //load in our routes
 var tvdb = require('./routes/tvdb');
-var episode = require('./routes/episodeDetails');
-var tvdbDetails = require('./routes/tvdbDetails');
-var tmdb = require('./routes/tmdbDetails');
+let episode = require('./routes/episodeDetails');
+let tvdbDetails = require('./routes/tvdbDetails');
+let tmdb = require('./routes/tmdbDetails');
 
 
 let prevTime = 0;
@@ -31,7 +31,9 @@ app.use(express.static(path.join(__dirname, 'client/dist/')));
 
 //Body parser MW
 app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.urlencoded({
+  extended: false
+}));
 
 //I think this will intercept all routes
 app.get('/', function (req, res) {
@@ -62,7 +64,10 @@ app.use(function (req, res, next) {
             .set('Accept', 'application/json')
             .end(function (err, response) {
               if (err || !response.ok) {
-                return res.status(response.status).json({ success: false, status: response.status });
+                return res.status(response.status).json({
+                  success: false,
+                  status: response.status
+                });
               } else {
                 console.log("success!");
                 app.set('jsontoken', response.body.token);
