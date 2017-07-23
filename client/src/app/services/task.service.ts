@@ -5,6 +5,7 @@ import 'rxjs/add/operator/map';
 import 'rxjs/add/observable/of';
 import 'rxjs/Rx';
 import 'rxjs/add/operator/toPromise';
+
 @Injectable()
 export class TaskService {
   constructor(private http: Http) {
@@ -15,13 +16,20 @@ export class TaskService {
   addKey(keystroke): Observable<any> { // todo: change this to an http request, as it is best practice, instead of fetch
     var headers = new Headers();
     headers.append('Content-Type', 'application/json');
+    let poster;
+
     const query = "https://api.themoviedb.org/3/search/tv?api_key=";
     return this.http.get(query + 'f016113c794da0ca4fc69f2cbeaca136' + '&language=en-US&query=' + keystroke)
       .map(show => {
         let res = show.json();
-
         // grab the items we want from the response
         let resultItems = res.results.map((show, index) => {
+          console.log(res.results[index].poster_path);
+
+          if (res.results[index].poster_path) {
+            poster = "https://image.tmdb.org/t/p/w92/" + res.results[index].poster_path;
+          } else { poster = "../../../assets/posternotfound.png"; }
+
           return {
             id: show.id,
             poster: show.poster_path,
@@ -40,7 +48,6 @@ export class TaskService {
   }
 
   selectShow(id) {
-    console.log("select show being called");
     var headers = new Headers();
     headers.append('Content-Type', 'application/json');
     return this.http.post("http://localhost:8080/api/episode", { tmdbId: id }, { headers: headers })
@@ -48,7 +55,6 @@ export class TaskService {
   }
 
   tvdbDetails(tvdbId) {
-    console.log("tvdbDetails being called. ID = " + tvdbId);
     var headers = new Headers();
     headers.append('Content-Type', 'application/json');
     //keystroke here is going to be our req.body data in the recieving route
@@ -58,7 +64,6 @@ export class TaskService {
 
   // tmdb details for external load
   tmdbDetails(tmdbId) {
-    console.log("tmdbDetails being called. ID = " + tmdbId);
     var headers = new Headers();
     headers.append('Content-Type', 'application/json');
     //keystroke here is going to be our req.body data in the recieving route

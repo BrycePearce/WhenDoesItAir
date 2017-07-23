@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
 
-
 //import * as  particlesJS from 'particles.js';
 
 //declare var particlesJS: any;
@@ -11,19 +10,19 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.css'],
 })
 export class AppComponent {
+  tmdbpic: string;
+
   ngOnInit(): void {
+    this.tmdbpic = '../../assets/logofooter.png';
     //particlesJS.load('particles-js', 'particles.json', null);
+    let can = document.getElementById('particles-js');
 
-      console.log("yee");
-var can = document.getElementById('particles-js');
-
-  can.addEventListener('contextmenu', function(e) {
-      console.log("test");
+    can.addEventListener('contextmenu', function (e) {
       if (e.button === 2) {
-       e.preventDefault();
+        e.preventDefault();
         return false;
       }
-  }, false);
+    }, false);
   }
 
 }

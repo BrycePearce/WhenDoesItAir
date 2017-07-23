@@ -17,7 +17,7 @@ declare var particlesJS: any;
   providers: [TaskService] // *** todo: Find out if these should be here or in route stuff *** why does adding TitleService to this array break it?
 })
 export class ResultPage implements OnInit {
-  tmdbid: number;  
+  tmdbid: number;
   tvdbid: number;
   sub: any;
   airDate: string;
@@ -52,7 +52,7 @@ export class ResultPage implements OnInit {
     private route: ActivatedRoute, // for our route params
     private TaskService: TaskService,  //inject our taskService into our LandingPage
     private TitleService: TitleService
-  ) { } 
+  ) { }
 
   ngOnInit(): void {
     this.backdrop = this.TitleService.getBackground();
@@ -65,7 +65,7 @@ export class ResultPage implements OnInit {
     this.tmdbImage = '../../../assets/tmdb.png';
     //set our data from the landingpage/service to our details object
     this.tmdbDetails = this.TitleService.getTitle();
-    this.poster = this.tmdbDetails.poster; // I make this.tmdbDetails just so I can access this property here. Super sloppy, remove this when we append to response noted in tmdb route
+    this.poster = "https://image.tmdb.org/t/p/w300/" + this.tmdbDetails.poster; // I make this.tmdbDetails just so I can access this property here. Super sloppy, remove this when we append to response noted in tmdb route
     this.tmdbRating = this.tmdbDetails.rating; // same as above
     this.overview = this.tmdbDetails.overview; // ^
     this.language = this.tmdbDetails.orglanguage; // ^
@@ -74,24 +74,24 @@ export class ResultPage implements OnInit {
       this.tmdbid = params['id'];
       // In a real app: dispatch action to load the details here.
     });
-    
+
     // handle external load
     if ((this.tmdbDetails && (Object.keys(this.tmdbDetails).length === 0))) {
-    this.TaskService.tmdbDetails(this.tmdbid)
-      .subscribe(res => {
-        this.backdrop = "https://image.tmdb.org/t/p/w1920" + res.data.backdrop_path; 
-        document.body.style.background = "url(" + this.backdrop + ")";
-        document.body.style.backgroundSize = 'cover';
-        document.body.style.backgroundRepeat = 'no-repeat';
-        document.body.style.backgroundPosition = "center center";
-        document.body.style.backgroundAttachment = "fixed";
-        particlesJS.load('particles-js', 'particles.json', null);
-        this.tmdbDetails = res.data;
-        this.poster = res.data.poster_path;
-        this.tmdbRating = res.data.vote_average;
-        this.overview = res.data.overview;
-        this.language = res.data.original_language;
-      });
+      this.TaskService.tmdbDetails(this.tmdbid)
+        .subscribe(res => {
+          this.backdrop = "https://image.tmdb.org/t/p/w1920" + res.data.backdrop_path;
+          document.body.style.background = "url(" + this.backdrop + ")";
+          document.body.style.backgroundSize = 'cover';
+          document.body.style.backgroundRepeat = 'no-repeat';
+          document.body.style.backgroundPosition = "center center";
+          document.body.style.backgroundAttachment = "fixed";
+          particlesJS.load('particles-js', 'particles.json', null);
+          this.tmdbDetails = res.data;
+          this.poster = res.data.poster_path;
+          this.tmdbRating = res.data.vote_average;
+          this.overview = res.data.overview;
+          this.language = res.data.original_language;
+        });
     }
     //send our id to our selectShow service, which returns our results
     this.TaskService.selectShow(this.tmdbid)
@@ -113,13 +113,12 @@ export class ResultPage implements OnInit {
         this.tempAirDate = "unknown";
         //temporary solution for blank first values
         if (futureArray[0] === "" || !futureArray[0]) {
-          if (futureArray.length === 0) { this.airDate = "No airtimes available.";}
+          if (futureArray.length === 0) { this.airDate = "No airtimes available."; }
           for (let i = 1; i <= futureArray.length; i += 1) {
             if (futureArray[i] === "" || futureArray[i] === undefined || futureArray[i] === null) {
               this.airDate = "No airtimes available.";
             } else {
               this.tempAirDate = futureArray[i];
-              console.log(this.finalAirtime);
               this.airDate = this.determineAirTime(this.tempAirDate, this.airday, this.airtime);
 
               break;
@@ -127,8 +126,8 @@ export class ResultPage implements OnInit {
           }
         } else {
           this.tempAirDate = futureArray[0];
-          console.log("this is the string for fromNow " +  this.tempAirDate);
-          this.airDate = moment(futureArray[0]).endOf('day').fromNow(); }
+          this.airDate = moment(futureArray[0]).endOf('day').fromNow();
+        }
 
 
         this.tvdbInfo = this.TaskService.tvdbDetails(this.tvdbId)
@@ -143,12 +142,9 @@ export class ResultPage implements OnInit {
             this.airtime = res.tvdbDetails.airsTime;
             this.network = res.tvdbDetails.network;
             this.runtime = res.tvdbDetails.runtime;
-            console.log(this.finalAirtime);
             this.finalAirtime = this.determineAirTime(this.tempAirDate, this.airday, this.airtime);
             this.localReleaseTime = this.localRelease(this.tempAirDate, this.airday, this.airtime);
             this.userTimezone = this.userTimezones();
-
-            console.log(this.finalAirtime);
           });
       });
   }
@@ -160,7 +156,7 @@ export class ResultPage implements OnInit {
   }
 
   // determines relative airtime fromNow, using NY as the default
-  determineAirTime(date,day,time) {
+  determineAirTime(date, day, time) {
     let dateTime;
     if (date === "unknown") {
       dateTime = "No airtimes available.";
@@ -176,17 +172,17 @@ export class ResultPage implements OnInit {
 
   // Sets the release time for New York as the default airing time,
   // and then converts it to your local timezone.
-  localRelease(date,day,time) {
+  localRelease(date, day, time) {
     let dateTime;
-        if (date === "unknown") {
+    if (date === "unknown") {
       dateTime = "Unknown";
       return dateTime;
     }
-    
+
     time = time.replace(/\s+/, ""); // remove whitespace from time
     date = moment(date).format('MMMM Do YYYY');
     dateTime = date + " " + time;
-    
+
     // create a moment object in the NY time zone
     let local = momentTimezone.tz(dateTime, 'MMM Do YYYY h:mmA', 'America/New_York');
     // switch to the target time zone and format back to a string
@@ -194,7 +190,7 @@ export class ResultPage implements OnInit {
     return local;
   }
 
-  userTimezones () {
-  return momentTimezone.tz.guess();
+  userTimezones() {
+    return momentTimezone.tz.guess();
   }
 }

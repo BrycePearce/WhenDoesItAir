@@ -42,8 +42,6 @@ export class LandingPage {
     if (keystroke) {
       this.TaskService.addKey(keystroke)
         .subscribe(res => {
-          console.log("hoi");
-          console.log(res);
           this.shows = res.data.splice(0, 6);
         });
     }
@@ -65,7 +63,10 @@ export class LandingPage {
       // Arrow Up
       this.arrowkeyLocation--;
     } else if (event.keyCode === 13) {
-      if (this.arrowkeyLocation === -1 || this.shows[this.arrowkeyLocation].id === undefined) {
+      if (this.arrowkeyLocation === -1) {
+        this.router.navigate(['/details', this.shows[0].id]);
+      }
+      if (this.shows[this.arrowkeyLocation] === undefined) {
         return null;
       }
       this.router.navigate(['/details', this.shows[this.arrowkeyLocation].id]);
