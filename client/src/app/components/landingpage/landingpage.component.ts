@@ -62,7 +62,7 @@ export class LandingPage {
     } else if (event.keyCode === 38 && this.arrowkeyLocation > 0) {
       // Arrow Up
       this.arrowkeyLocation--;
-    } else if (event.keyCode === 13) {
+    } else if (event.keyCode === 13) { // Enter
       if (this.arrowkeyLocation === -1) {
         this.router.navigate(['/details', this.shows[0].id]);
       }

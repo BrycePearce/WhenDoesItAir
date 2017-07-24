@@ -27,6 +27,7 @@ export class ResultPage implements OnInit {
   characters = [];
   tmdbDetails: any;
   country = "";
+  initPosterW = "w92";
   tvdbId: string;
   tvdbInfo: Object;
   tvdbRating: string;
@@ -55,8 +56,11 @@ export class ResultPage implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.backdrop = this.TitleService.getBackground();
-    document.body.style.background = "url(" + this.backdrop + ")";
+    if (!this.TitleService.getBackground().includes('undefined')) {
+      console.log(this.TitleService.getBackground());
+      this.backdrop = this.TitleService.getBackground();
+      document.body.style.background = "url(" + this.backdrop + ")";
+    }
     document.body.style.backgroundSize = 'cover';
     document.body.style.backgroundRepeat = 'no-repeat';
     document.body.style.backgroundPosition = "center center";
@@ -65,7 +69,11 @@ export class ResultPage implements OnInit {
     this.tmdbImage = '../../../assets/tmdb.png';
     //set our data from the landingpage/service to our details object
     this.tmdbDetails = this.TitleService.getTitle();
-    this.poster = "https://image.tmdb.org/t/p/w300/" + this.tmdbDetails.poster; // I make this.tmdbDetails just so I can access this property here. Super sloppy, remove this when we append to response noted in tmdb route
+
+    // change the width of our poster
+    if (this.tmdbDetails.poster !== undefined && this.tmdbDetails.poster.includes(this.initPosterW)) {
+      this.poster = this.tmdbDetails.poster.replace("w92", "w300");; // I make this.tmdbDetails just so I can access this property here. Super sloppy, remove this after appending to response noted in tmdb route
+    }
     this.tmdbRating = this.tmdbDetails.rating; // same as above
     this.overview = this.tmdbDetails.overview; // ^
     this.language = this.tmdbDetails.orglanguage; // ^
@@ -87,7 +95,7 @@ export class ResultPage implements OnInit {
           document.body.style.backgroundAttachment = "fixed";
           particlesJS.load('particles-js', 'particles.json', null);
           this.tmdbDetails = res.data;
-          this.poster = res.data.poster_path;
+          this.poster = "https://image.tmdb.org/t/p/w300/" + res.data.poster_path;
           this.tmdbRating = res.data.vote_average;
           this.overview = res.data.overview;
           this.language = res.data.original_language;

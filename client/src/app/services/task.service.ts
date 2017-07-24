@@ -24,15 +24,13 @@ export class TaskService {
         let res = show.json();
         // grab the items we want from the response
         let resultItems = res.results.map((show, index) => {
-          console.log(res.results[index].poster_path);
-
           if (res.results[index].poster_path) {
             poster = "https://image.tmdb.org/t/p/w92/" + res.results[index].poster_path;
           } else { poster = "../../../assets/posternotfound.png"; }
 
           return {
             id: show.id,
-            poster: show.poster_path,
+            poster: poster,
             rating: show.vote_average,
             backdrop: show.backdrop_path,
             country: show.origin_country,
@@ -50,7 +48,7 @@ export class TaskService {
   selectShow(id) {
     var headers = new Headers();
     headers.append('Content-Type', 'application/json');
-    return this.http.post("http://localhost:8080/api/episode", { tmdbId: id }, { headers: headers })
+    return this.http.post("http://whendoesitair.info/api/episode", { tmdbId: id }, { headers: headers })
       .map(res => res.json());
   }
 
@@ -58,7 +56,7 @@ export class TaskService {
     var headers = new Headers();
     headers.append('Content-Type', 'application/json');
     //keystroke here is going to be our req.body data in the recieving route
-    return this.http.post("http://localhost:8080/api/tvdbDetails", { tvdbId: tvdbId }, { headers: headers })
+    return this.http.post("http://whendoesitair.info/api/tvdbDetails", { tvdbId: tvdbId }, { headers: headers })
       .map(res => res.json());
   }
 
@@ -67,7 +65,7 @@ export class TaskService {
     var headers = new Headers();
     headers.append('Content-Type', 'application/json');
     //keystroke here is going to be our req.body data in the recieving route
-    return this.http.post("http://localhost:8080/api/tmdb", { tmdbId: tmdbId }, { headers: headers })
+    return this.http.post("http://whendoesitair.info/api/tmdb", { tmdbId: tmdbId }, { headers: headers })
       .map(res => res.json());
   }
 }

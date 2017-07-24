@@ -39,7 +39,8 @@ export class TitleService {
       { name: 'Doctor Who', image: 'https://image.tmdb.org/t/p/w1920/tQkigP2fItdzJWvtIhBvHxgs5yE.jpg' },
       { name: 'Westworld', image: 'https://image.tmdb.org/t/p/w1920/45rk1PQjiTvEPzi0yBfYl0bdzz3.jpg' },
       { name: 'Better Call Saul', image: 'https://image.tmdb.org/t/p/w1920/ljik3PqnobCL9fNYJRrDD8eTuFe.jpg' },
-      { name: 'The Flash', image: 'https://image.tmdb.org/t/p/w1920/9NzRllYCJyvn8SUnif6HyHPvLNH.jpg' }
+      { name: 'The Flash', image: 'https://image.tmdb.org/t/p/w1920/9NzRllYCJyvn8SUnif6HyHPvLNH.jpg' },
+      { name: 'Game of Thrones', image: 'https://image.tmdb.org/t/p/w1920/aKz3lXU71wqdslC1IYRC3yHD6yw.jpg' }
     ];
 
     const index = Math.floor(Math.random() * (backgrounds.length - 1 - 0) + 0);

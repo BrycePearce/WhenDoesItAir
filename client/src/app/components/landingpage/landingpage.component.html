@@ -6,7 +6,7 @@
       <div class="results-list">
         <li (click)="setTitle(list); setBackground(list.backdrop)" *ngFor="let list of shows; let i = index" [class.selected]="i == arrowkeyLocation"
           [routerLink]="['/details', list.id]">
-          <img class="liPosters" src="https://image.tmdb.org/t/p/w92/{{list.poster}}" />
+          <img class="liPosters" src="{{list.poster}}" />
           <span class="result">{{list.show}}</span>
           <span class="year">{{list.year}}</span>
         </li>
