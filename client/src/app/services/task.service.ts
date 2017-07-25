@@ -48,7 +48,7 @@ export class TaskService {
   selectShow(id) {
     var headers = new Headers();
     headers.append('Content-Type', 'application/json');
-    return this.http.post("http://whendoesitair.info/api/episode", { tmdbId: id }, { headers: headers })
+    return this.http.post("http://localhost:8080/api/episode", { tmdbId: id }, { headers: headers })
       .map(res => res.json());
   }
 
@@ -56,7 +56,7 @@ export class TaskService {
     var headers = new Headers();
     headers.append('Content-Type', 'application/json');
     //keystroke here is going to be our req.body data in the recieving route
-    return this.http.post("http://whendoesitair.info/api/tvdbDetails", { tvdbId: tvdbId }, { headers: headers })
+    return this.http.post("http://localhost:8080/api/tvdbDetails", { tvdbId: tvdbId }, { headers: headers })
       .map(res => res.json());
   }
 
@@ -65,7 +65,7 @@ export class TaskService {
     var headers = new Headers();
     headers.append('Content-Type', 'application/json');
     //keystroke here is going to be our req.body data in the recieving route
-    return this.http.post("http://whendoesitair.info/api/tmdb", { tmdbId: tmdbId }, { headers: headers })
+    return this.http.post("http://localhost:8080/api/tmdb", { tmdbId: tmdbId }, { headers: headers })
       .map(res => res.json());
   }
 }

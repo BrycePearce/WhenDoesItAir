@@ -19,7 +19,7 @@ const app = express();
 app.set('jsontoken', process.env.token);
 app.set('tmdbkey', process.env.TMDBkey);
 //set port (local environment variable is set as PORT=80)
-app.set('port', process.env.PORT || 80);
+app.set('port', process.env.PORT || 8080);
 
 //view engine
 app.set('views', path.join(__dirname, 'views'));
