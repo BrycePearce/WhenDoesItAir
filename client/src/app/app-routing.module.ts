@@ -8,9 +8,10 @@ import { TitleService } from './services/title.service';
 const routes: Routes = [
 
   { path: '', component: LandingPage },
-    {
+  {
     path: 'details/:id', component: ResultPage
   },
+  { path: '**', redirectTo: '/' }
 ];
 
 @NgModule({

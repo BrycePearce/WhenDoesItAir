@@ -57,7 +57,6 @@ export class ResultPage implements OnInit {
 
   ngOnInit(): void {
     if (!this.TitleService.getBackground().includes('undefined')) {
-      console.log(this.TitleService.getBackground());
       this.backdrop = this.TitleService.getBackground();
       document.body.style.background = "url(" + this.backdrop + ")";
     }
@@ -69,7 +68,6 @@ export class ResultPage implements OnInit {
     this.tmdbImage = '../../../assets/tmdb.png';
     //set our data from the landingpage/service to our details object
     this.tmdbDetails = this.TitleService.getTitle();
-
     // change the width of our poster
     if (this.tmdbDetails.poster !== undefined && this.tmdbDetails.poster.includes(this.initPosterW)) {
       this.poster = this.tmdbDetails.poster.replace("w92", "w300");; // I make this.tmdbDetails just so I can access this property here. Super sloppy, remove this after appending to response noted in tmdb route
@@ -128,7 +126,6 @@ export class ResultPage implements OnInit {
             } else {
               this.tempAirDate = futureArray[i];
               this.airDate = this.determineAirTime(this.tempAirDate, this.airday, this.airtime);
-
               break;
             }
           }

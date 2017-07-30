@@ -4,6 +4,7 @@ var request = require('superagent');
 
 
 router.post('/tvdbDetails', function (req, res, next) {
+  console.log("/tvdbDetails");
   request
     .get("https://api.thetvdb.com/series/" + req.body.tvdbId)
     .set('Accept', 'application/json')
@@ -14,7 +15,6 @@ router.post('/tvdbDetails', function (req, res, next) {
         return response.status({
           success: false
         });
-
       } else {
         request
           .get("https://api.thetvdb.com/series/" + req.body.tvdbId + "/actors")

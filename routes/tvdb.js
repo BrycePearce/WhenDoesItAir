@@ -5,6 +5,7 @@ var router = express.Router();
 var request = require('superagent');
 
 router.post('/tvdb', function (req, res, next) {
+  console.log("/tvdb");
   //get our token (this will run on startup, need to put it in the router.get, then next the tvdb call)
   request
     .post("https://api.themoviedb.org/3/search/tv?api_key=" + req.app.get('tmdbkey') + "&language=en-US&query=" + req.body.keystroke)

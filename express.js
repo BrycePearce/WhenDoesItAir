@@ -64,25 +64,22 @@ app.use(function (req, res, next) {
             .set('Accept', 'application/json')
             .end(function (err, response) {
               if (err || !response.ok) {
-                return res.status(response.status).json({
-                  success: false,
-                  status: response.status
-                });
-              } else {
-                console.log("success!");
-                app.set('jsontoken', response.body.token);
                 return res.status(response.status);
+              } else {
+                console.log("Token created");
+                app.set('jsontoken', response.body.token);
               }
+              next();
             });
         } else {
           console.log("Token refreshed");
           app.set('jsontoken', response.body.token);
         }
       });
-  }
-  next();
+  } else {
+    next();
+  };
 });
-
 app.use('/api', tvdb); //http://localhost:8080/api/tvdb
 app.use('/api', episode); //http://localhost:8080/api/episode
 app.use('/api', tvdbDetails); //http://localhost:8080/api/episode

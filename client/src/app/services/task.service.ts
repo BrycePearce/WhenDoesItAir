@@ -48,6 +48,7 @@ export class TaskService {
   selectShow(id) {
     var headers = new Headers();
     headers.append('Content-Type', 'application/json');
+    console.log("attempting to POST to /episode"); // but it never gets sent
     return this.http.post("http://localhost:8080/api/episode", { tmdbId: id }, { headers: headers })
       .map(res => res.json());
   }
@@ -55,7 +56,6 @@ export class TaskService {
   tvdbDetails(tvdbId) {
     var headers = new Headers();
     headers.append('Content-Type', 'application/json');
-    //keystroke here is going to be our req.body data in the recieving route
     return this.http.post("http://localhost:8080/api/tvdbDetails", { tvdbId: tvdbId }, { headers: headers })
       .map(res => res.json());
   }
