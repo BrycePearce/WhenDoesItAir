@@ -2,9 +2,7 @@ var express = require('express');
 var router = express.Router();
 var request = require('superagent');
 
-
 router.post('/tvdbDetails', function (req, res, next) {
-  console.log("/tvdbDetails");
   request
     .get("https://api.thetvdb.com/series/" + req.body.tvdbId)
     .set('Accept', 'application/json')

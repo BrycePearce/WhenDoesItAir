@@ -10,7 +10,6 @@ let episode = require('./routes/episodeDetails');
 let tvdbDetails = require('./routes/tvdbDetails');
 let tmdb = require('./routes/tmdbDetails');
 
-
 let prevTime = 0;
 
 const app = express();
@@ -21,11 +20,6 @@ app.set('tmdbkey', process.env.TMDBkey);
 //set port (local environment variable is set as PORT=80)
 app.set('port', process.env.PORT || 8080);
 
-//view engine
-app.set('views', path.join(__dirname, 'views'));
-app.set('view engine', 'ejs');
-app.engine('html', require('ejs').renderFile);
-
 //static folder for angular
 app.use(express.static(path.join(__dirname, 'client/dist/')));
 
@@ -35,51 +29,45 @@ app.use(bodyParser.urlencoded({
   extended: false
 }));
 
-//I think this will intercept all routes
-app.get('/', function (req, res) {
-  res.sendFile(path.resolve(__dirname + '/client/dist/index.html'));
-});
-
 // This function is executed every time the app receives a request.
 // Handles our token, see's if it needs to be renewed, and if so, renews it
-app.use(function (req, res, next) {
-  var currTime = Date.now();
-  if (currTime - prevTime >= 84600) { //23.5 hours in seconds 
-    console.log(currTime - prevTime + " >= " + 84600)
-    prevTime = currTime;
-    request
-      .get("https://api.thetvdb.com/refresh_token")
-      .set('Accept', 'application/json')
-      .set('Authorization', 'Bearer ' + app.get('jsontoken'))
-      .end(function (err, response) {
-        if (err || !response.ok) {
-          console.log("getting a new token");
-          request
-            .post("https://api.thetvdb.com/login")
-            .send({
-              "apikey": process.env.apikey,
-              "userkey": process.env.userkey,
-              "username": process.env.user
-            })
-            .set('Accept', 'application/json')
-            .end(function (err, response) {
-              if (err || !response.ok) {
-                return res.status(response.status);
-              } else {
-                console.log("Token created");
-                app.set('jsontoken', response.body.token);
-              }
-              next();
-            });
-        } else {
-          console.log("Token refreshed");
-          app.set('jsontoken', response.body.token);
-        }
-      });
-  } else {
-    next();
-  };
-});
+
+function getToken() {
+  request
+    .get("https://api.thetvdb.com/refresh_token")
+    .set('Accept', 'application/json')
+    .set('Authorization', 'Bearer ' + app.get('jsontoken'))
+    .end(function (err, response) {
+      if (err || !response.ok) {
+        console.log("getting a new token", response.status);
+        request
+          .post("https://api.thetvdb.com/login")
+          .send({
+            "apikey": process.env.apikey,
+            "userkey": process.env.userkey,
+            "username": process.env.user
+          })
+          .set('Accept', 'application/json')
+          .end(function (err, response) {
+            if (err || !response.ok) {
+              console.log("problem");
+              console.log(err.body);
+              //return res.status(response.status);
+            } else {
+              console.log("Token created");
+              app.set('jsontoken', response.body.token);
+            }
+          });
+      } else {
+        console.log("Token refreshed");
+        app.set('jsontoken', response.body.token);
+      }
+    });
+}
+getToken();
+setInterval(getToken, 1000 * 60 * 60 * 20);
+
+
 app.use('/api', tvdb); //http://localhost:8080/api/tvdb
 app.use('/api', episode); //http://localhost:8080/api/episode
 app.use('/api', tvdbDetails); //http://localhost:8080/api/episode

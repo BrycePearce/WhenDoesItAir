@@ -4,10 +4,7 @@ var express = require('express');
 var router = express.Router();
 var request = require('superagent');
 
-
 router.post('/tmdb', function (req, res, next) {
-  console.log("/tmdb");
-
   request
     .get("https://api.themoviedb.org/3/tv/" + req.body.tmdbId + "?api_key=" + req.app.get('tmdbkey') + "&language=en-US")
     .set('Accept', 'application/json')
