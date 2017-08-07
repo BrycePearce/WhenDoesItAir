@@ -1,11 +1,10 @@
-@import url('https://fonts.googleapis.com/css?family=Roboto');
-
 /*
  * Padding pushes away from things inside the div.
  * Margin pushes away from other elements.
  */
 
- /*
+
+/*
   *
   * Credit to Nitix & Haliax for significant help on the design for the site.
   *
@@ -69,8 +68,9 @@ li {
   padding: 5px;
   border: 1px solid rgb(18, 18, 18);
   display: flex;
-  background: rgba(128, 128, 128, 0.5);
+  background: rgba(128, 128, 128, 0.8);
   cursor: pointer;
+  font-size: 18px;
 }
 
 a {

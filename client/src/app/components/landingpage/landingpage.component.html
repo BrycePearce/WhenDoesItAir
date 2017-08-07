@@ -1,8 +1,15 @@
 <div>
   <div class="landingContainer">
     <div class="searchArea">
-      <input type="text" autoComplete="off" maxlength="45" (keydown)="keyDown($event)" placeholder={{backgroundPlaceholder.info.placeholderText}}
-        [(ngModel)]="keystroke" (ngModelChange)="getKey($event)">
+      <input type="text"
+       autoComplete="off" 
+       maxlength="45" 
+       (keydown)="keyDown($event)" 
+       placeholder={{placeholderText}}
+       (focus)="placeholderText = ''" 
+       (blur)="placeholderText = onBlurMethod()"
+       [(ngModel)]="keystroke" 
+       (ngModelChange)="getKey($event)">
       <div class="results-list">
         <li (click)="setTitle(list); setBackground(list.backdrop)" *ngFor="let list of shows; let i = index" [class.selected]="i == arrowkeyLocation"
           [routerLink]="['/details', list.id]">

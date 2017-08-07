@@ -29,7 +29,8 @@ export class LandingPage {
     particlesJS.load('particles-js', 'particles.json', null);
 
     // for placeholder text
-    this.backgroundPlaceholder = this.TitleService.getBackdrop()
+    this.backgroundPlaceholder = this.TitleService.getBackdrop();
+    this.placeholderText = this.backgroundPlaceholder.info.placeholderText;
     document.body.style.background = "url(" + this.backgroundPlaceholder.info.name + ")";
     document.body.style.backgroundSize = 'cover';
     document.body.style.backgroundRepeat = 'no-repeat';
@@ -55,6 +56,9 @@ export class LandingPage {
     this.TitleService.setBackground(backdrop);
   }
 
+  onBlurMethod() {
+    return this.backgroundPlaceholder.info.placeholderText;
+  }
   keyDown(event: KeyboardEvent) {
     if (event.keyCode === 40 && this.arrowkeyLocation < this.shows.length - 1) {
       // Arrow Down

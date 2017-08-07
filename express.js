@@ -52,7 +52,6 @@ function getToken() {
             if (err || !response.ok) {
               console.log("problem");
               console.log(err.body);
-              //return res.status(response.status);
             } else {
               console.log("Token created");
               app.set('jsontoken', response.body.token);

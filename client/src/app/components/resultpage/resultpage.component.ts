@@ -154,10 +154,17 @@ export class ResultPage implements OnInit {
       });
   }
 
-  // takes a name like 'some / name / here'
+  // takes a name like 'some / name / here' or 'some | name | here'
   // returns only 'some'
   firstRole(roles) {
-    return roles.split('/')[0].trim();
+    if (roles.charAt(0) === '|') {
+      roles = roles.slice(1);
+    }
+
+    if (roles.includes('/')) {
+      return roles.split('/')[0].trim();
+    } else
+      return roles.split('|')[0].trim();
   }
 
   // determines relative airtime fromNow, using NY as the default
