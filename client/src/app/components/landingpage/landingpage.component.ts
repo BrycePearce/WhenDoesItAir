@@ -4,7 +4,6 @@ import { TaskService } from '../../services/task.service';
 import { TitleService } from '../../services/title.service';
 //import * as  particlesJS from 'particles.js';
 import { Router } from '@angular/router';
-declare var particlesJS: any;
 
 @Component({
   selector: 'landing-page',
@@ -25,9 +24,6 @@ export class LandingPage {
   }
 
   ngOnInit(): void {
-    // particles
-    particlesJS.load('particles-js', 'particles.json', null);
-
     // for placeholder text
     this.backgroundPlaceholder = this.TitleService.getBackdrop();
     this.placeholderText = this.backgroundPlaceholder.info.placeholderText;
@@ -67,6 +63,9 @@ export class LandingPage {
       // Arrow Up
       this.arrowkeyLocation--;
     } else if (event.keyCode === 13) { // Enter
+      if (this.shows.length === 0) {
+        return null;
+      }
       if (this.arrowkeyLocation === -1) {
         this.router.navigate(['/details', this.shows[0].id]);
       }

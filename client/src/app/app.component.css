@@ -1,57 +1,61 @@
-a {
-  color: inherit;
-  /* blue colors for links too */
-  text-decoration: inherit;
-  /* no underline */
-}
+ a {
+   color: inherit;
+   /* blue colors for links too */
+   text-decoration: inherit;
+   /* no underline */
+ }
 
-h1 {
-  font-family: Calibri;
-  font-style: normal;
-  font-variant: normal;
-  font-weight: 500;
-  font-size: 7em;
-  color: #fefefe;
-  text-align: center;
-  text-shadow: -1px -4px 0px rgba(18, 18, 18, 1);
-  position: relative;
-  display: inline;
-  left: calc(50% - 822px/2);
-  /* not working on mobile */
-}
+ h1 {
+   font-family: Calibri;
+   font-style: normal;
+   font-variant: normal;
+   font-weight: 500;
+   font-size: 7em;
+   color: #fefefe;
+   text-align: center;
+   text-shadow: -1px -4px 0px rgba(18, 18, 18, 1);
+   position: relative;
+   display: inline;
+   left: calc(50% - 822px/2);
+   /* not working on mobile */
+ }
 
-@media (max-width: 30em) {
-  h1 {
-    position: absolute;
-    font-size: 2em;
-    top: 0vh;
-    left: 10vh;
-  }
-  body {
-    overflow: visible;
-  }
-}
+ @media (max-width: 30em) {
+   h1 {
+     position: absolute;
+     font-size: 2em;
+     top: 0vh;
+     left: 10vh;
+   }
+   body {
+     overflow: visible;
+   }
+ }
 
-@media only screen and (min-device-width: 375px) and (max-device-width: 667px) and (orientation: landscape) and (-webkit-min-device-pixel-ratio: 2) {
-  h1 {
-    position: absolute;
-    font-size: 2em;
-    top: 0vh;
-    left: 10vh;
-  }
-  body {
-    overflow: visible;
-  }
-}
+ @media only screen and (min-device-width: 375px) and (max-device-width: 667px) and (orientation: landscape) and (-webkit-min-device-pixel-ratio: 2) {
+   h1 {
+     position: absolute;
+     font-size: 2em;
+     top: 0vh;
+     left: 10vh;
+   }
+   body {
+     overflow: visible;
+   }
+ }
 
-.tmdbTM {
-  color: white;
-  position: absolute;
-  bottom: 0;
-  right: 0;
-  margin: 10px;
-  font-size: 10px;
-  background-color: rgba(20, 25, 29, 0.9);
-  display: flex;
-  align-items: center;
-}
+ .tmdbTM {
+   color: white;
+   position: absolute;
+   bottom: -85vh;
+   right: 2vh;
+   margin: 10px;
+   font-size: 10px;
+   background-color: rgba(20, 25, 29, 0.9);
+   display: flex;
+   align-items: center;
+ }
+
+ .footer {
+   position: relative;
+ }

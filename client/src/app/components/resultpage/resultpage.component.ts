@@ -6,8 +6,6 @@ import { TaskService } from '../../services/task.service'; //task.service.ts
 import { TitleService } from '../../services/title.service';
 import * as moment from 'moment';
 import momentTimezone from 'moment-timezone';
-declare var particlesJS: any;
-//import { AppComponent } from '../../app.component';
 @Component({
   //how we select this component
   selector: 'result-page',
@@ -91,7 +89,6 @@ export class ResultPage implements OnInit {
           document.body.style.backgroundRepeat = 'no-repeat';
           document.body.style.backgroundPosition = "center center";
           document.body.style.backgroundAttachment = "fixed";
-          particlesJS.load('particles-js', 'particles.json', null);
           this.tmdbDetails = res.data;
           this.poster = "https://image.tmdb.org/t/p/w300/" + res.data.poster_path;
           this.tmdbRating = res.data.vote_average;

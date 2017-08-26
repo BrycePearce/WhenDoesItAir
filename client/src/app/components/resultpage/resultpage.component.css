@@ -1,9 +1,8 @@
 @import url('https://fonts.googleapis.com/css?family=Oxygen');
-
 * {
-    font-family: 'Oxygen', sans-serif;
-    font-size: 14px;
-    color: white;
+  font-family: 'Oxygen', sans-serif;
+  font-size: 14px;
+  color: white;
 }
 
 body {
@@ -16,24 +15,28 @@ body {
 .contentContainer {
   max-width: 1024px;
   margin: 0px auto 0px auto;
-  background-color: rgba(37,37,37, 0.9);
+  background-color: rgba(37, 37, 37, 0.9);
   border-radius: 8px 8px 8px 8px;
 }
 
 .detailsPoster {
   border-radius: 8px 0px 0px 8px;
 }
+
 .detailsTopContainer {
-    display: flex;
-      background-color: rgba(51,51,51, 1.0);
-    border-radius: 8px 8px 8px 8px;
+  display: flex;
+  background-color: rgba(51, 51, 51, 1.0);
+  border-radius: 8px 8px 8px 8px;
 }
 
 .ratings {
   display: flex;
   flex-direction: row;
 }
+
+
 /*makes things space apart*/
+
 .rating {
   align-items: center;
   display: flex;
@@ -45,76 +48,75 @@ body {
 }
 
 .title {
-    display: flex;
-    justify-content: center;
-    font-size: 25px;
-    margin-top: 10px;
+  display: flex;
+  justify-content: center;
+  font-size: 25px;
+  margin-top: 10px;
 }
 
 .airDate {
-    display:flex;
-    padding: 20px;
-    background: #222222;
-    border: 1px solid #32383E;
-    box-shadow: inset 0px 1px 5px 0px rgba(0, 0, 0, 0.4);
-    border-radius: 4px;
-    margin-top: auto;
-    display: inline-table;
-    justify-content: center;
-    margin-left:auto; 
-    margin-right:auto;
-    color: #0dad64;
+  display: flex;
+  padding: 20px;
+  background: #222222;
+  border: 1px solid #32383E;
+  box-shadow: inset 0px 1px 5px 0px rgba(0, 0, 0, 0.4);
+  border-radius: 4px;
+  margin-top: auto;
+  display: inline-table;
+  justify-content: center;
+  margin-left: auto;
+  margin-right: auto;
+  color: #0dad64;
 }
 
 .overviewDetailsArea {
-  display:flex;
-  flex-wrap:wrap;
-  flex-direction:row;
-  justify-content:flex-start;
-  align-items:stretch;
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: stretch;
   margin-top: 25px;
   text-align: center;
   margin-left: 5%;
 }
 
-.left { 
-  order:1;  
-  flex-basis:100%;
+.left {
+  order: 1;
+  flex-basis: 100%;
   width: 50%;
 }
 
 .right {
-  order:2; 
-  flex-basis:100%;
+  order: 2;
+  flex-basis: 100%;
   width: 50%;
- }
+}
 
 @media screen and (min-width:600px) {
-   .container {
-       flex-wrap:nowrap;
-   } 
-   
-    .left {
-        flex-basis:300px;
-        order:1;
-    }
-    .right {
-        flex-basis:200px;
-        order:3;
-    }
+  .container {
+    flex-wrap: nowrap;
+  }
+  .left {
+    flex-basis: 300px;
+    order: 1;
+  }
+  .right {
+    flex-basis: 200px;
+    order: 3;
+  }
 }
 
 .topText {
   opacity: 1.0;
-    display: flex;
-    flex-direction: column;
-    padding: 15px;
-    width: 100%
+  display: flex;
+  flex-direction: column;
+  padding: 15px;
+  width: 100%
 }
 
 .title {
-    display: flex;
-    align-items: center;
+  display: flex;
+  align-items: center;
 }
 
 .overview {
@@ -125,10 +127,11 @@ body {
   overflow-y: auto;
   overflow-x: hidden;
 }
+
 .searchAgain {
   display: flex;
-  justify-content:flex-end;
-  align-items:flex-end;
+  justify-content: flex-end;
+  align-items: flex-end;
   margin-top: auto;
   white-space: nowrap;
 }
@@ -146,12 +149,13 @@ p {
   margin: 0;
   padding-top: 10px;
   padding-bottom: 10px;
-  color:#0dad64;
+  color: #0dad64;
   font-size: 17px;
   font-weight: bold;
 }
+
 body {
- background-color: #efefef;
+  background-color: #efefef;
 }
 
 .footer {
@@ -159,6 +163,7 @@ body {
   padding-top: 30px;
   padding-left: 30px;
   padding-right: 30px;
+  padding-bottom: 10px;
   display: flex;
   justify-content: space-between;
 }
@@ -171,116 +176,99 @@ body {
 }
 
 .bottomHeader {
-    text-align: center;
+  text-align: center;
 }
+
 .actors {
-    max-width: 645px;
-    text-align: center;
+  max-width: 645px;
+  text-align: center;
 }
 
 .actor {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    padding: 10px 0;
-    min-width: 200px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 10px 0;
+  min-width: 200px;
 }
 
 .castMembers {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
 }
 
 .member {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    padding: 10px 0;
-    min-width: 200px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 10px 0;
+  min-width: 200px;
 }
 
 @media (max-width: 30em) {
-
   body {
-      overflow: visible;
+    overflow: visible;
   }
   h1 {
-    color:green;
+    color: green;
     font-size: 14444px;
     top: 0vh;
     left: 21vh;
-    }
-
-    .left {
-      flex-basis: 0%;
-    }
-
-    .right {
-     flex-basis: 0%;
-    }
-
-    .detailsPoster {
+  }
+  .left {
+    flex-basis: 0%;
+  }
+  .right {
+    flex-basis: 0%;
+  }
+  .detailsPoster {
     max-width: calc(342px / 2);
     width: auto;
     height: auto;
     margin: auto;
-    }
-
-    .detailsTopContainer {
+  }
+  .detailsTopContainer {
     display: flex;
     flex-direction: column;
     padding: 15px;
-    }
-
-        .tmdbTM {
+  }
+  .tmdbTM {
     top: 0;
     right: initial;
-    }
-
-    .returnText {
-    font-size:15px;
-    }
-
+  }
+  .returnText {
+    font-size: 15px;
+  }
 }
 
-@media only screen 
-    and (min-device-width : 375px) 
-    and (max-device-width : 667px) 
-    and (orientation : landscape) 
-    and (-webkit-min-device-pixel-ratio : 2)
-{
-    body {
-      overflow: visible;
+@media only screen and (min-device-width: 375px) and (max-device-width: 667px) and (orientation: landscape) and (-webkit-min-device-pixel-ratio: 2) {
+  body {
+    overflow: visible;
   }
-
   h1 {
     position: absolute;
     font-size: 30px;
     top: 0vh;
     left: 3vh;
-    }
-
-    .left {
-      flex-basis: 0%;
-      margin-right: 100px;
-    }
-
-    .right {
-     flex-basis: 0%;
-    }
-
-    .ratings {
+  }
+  .left {
+    flex-basis: 0%;
+    margin-right: 100px;
+  }
+  .right {
+    flex-basis: 0%;
+  }
+  .ratings {
     margin-left: 60px;
-    }
-
-    .detailsPoster {
+  }
+  .detailsPoster {
     max-width: calc(342px / 2);
     width: auto;
     height: auto;
     margin: auto;
-    }
-    .returnText {
-    font-size:25px;
-    }
   }
+  .returnText {
+    font-size: 25px;
+  }
+}

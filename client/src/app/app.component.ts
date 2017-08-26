@@ -1,8 +1,5 @@
 import { Component } from '@angular/core';
-
-//import * as  particlesJS from 'particles.js';
-
-//declare var particlesJS: any;
+declare var particlesJS: any;
 
 @Component({
   selector: 'app-root',
@@ -14,7 +11,7 @@ export class AppComponent {
 
   ngOnInit(): void {
     this.tmdbpic = '../../assets/logofooter.png';
-    //particlesJS.load('particles-js', 'particles.json', null);
+    particlesJS.load('particles-js', 'particles.json', null);
     let can = document.getElementById('particles-js');
 
     can.addEventListener('contextmenu', function (e) {
