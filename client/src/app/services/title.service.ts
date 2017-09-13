@@ -1,13 +1,5 @@
 import { Injectable } from '@angular/core';
-import { ActivatedRouteSnapshot, Resolve, Router, RouterStateSnapshot } from '@angular/router';
-import { Observable } from 'rxjs/Observable';
-import 'rxjs/add/operator/catch';
-import 'rxjs/add/operator/map';
-import 'rxjs/add/observable/of';
-
-//import { Session } from './session.model';
-//import { SessionService } from './session.service';
-
+import { ActivatedRouteSnapshot, Resolve, Router, RouterStateSnapshot } from '@angular/router'; 
 
 // this gives us the name of the clicked show, which we send to TitleResolver
 @Injectable()
@@ -44,7 +36,7 @@ export class TitleService {
     ];
 
     const index = Math.floor(Math.random() * (backgrounds.length - 1 - 0) + 0);
-    let nameBackground = {
+    const nameBackground = {
       info:
       {
         name: backgrounds[index].image,
@@ -61,6 +53,4 @@ export class TitleService {
   getBackground() {
     return 'https://image.tmdb.org/t/p/w1920' + this.backgroundurl;
   }
-
-
 }
