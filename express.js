@@ -50,8 +50,7 @@ function getToken() {
           .set('Accept', 'application/json')
           .end(function (err, response) {
             if (err || !response.ok) {
-              console.log("problem");
-              console.log(err.body);
+              return;
             } else {
               console.log("Token created");
               app.set('jsontoken', response.body.token);

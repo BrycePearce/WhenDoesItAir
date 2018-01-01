@@ -1,15 +1,15 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { LandingPage } from './components/landingpage/landingpage.component';
-import { ResultPage } from './components/resultpage/resultpage.component';
+import { LandingPageComponent } from './components/landingpage/landingpage.component';
+import { ResultPageComponent } from './components/resultpage/resultpage.component';
 
 import { TitleService } from './services/title.service';
 
 const routes: Routes = [
 
-  { path: '', component: LandingPage },
+  { path: '', component: LandingPageComponent },
   {
-    path: 'details/:id', component: ResultPage
+    path: 'details/:id', component: ResultPageComponent
   },
   { path: '**', redirectTo: '/' }
 ];

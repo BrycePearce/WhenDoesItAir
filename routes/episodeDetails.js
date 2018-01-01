@@ -8,7 +8,6 @@ router.post('/episode', function (req, res, next) {
     .set('Accept', 'application/json')
     .end(function (err, firstResponse) {
       if (err || firstResponse.status != 200) {
-        console.log("problem in /episode route");
         return firstResponse.status;
       } else {
         request

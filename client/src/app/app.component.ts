@@ -1,25 +1,20 @@
-import { Component } from '@angular/core';
+import { Component, ViewEncapsulation } from '@angular/core';
+import { OnInit } from '@angular/core/src/metadata/lifecycle_hooks';
 declare var particlesJS: any;
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css'],
+  encapsulation: ViewEncapsulation.None // allows us to select the background of the whole app, and not this specific component.
 })
-export class AppComponent {
-  tmdbpic: string;
+export class AppComponent implements OnInit {
+  tmdbpic = '../../assets/logofooter.png';
+
+  constructor() { }
 
   ngOnInit(): void {
-    this.tmdbpic = '../../assets/logofooter.png';
     particlesJS.load('particles-js', 'particles.json', null);
-    let can = document.getElementById('particles-js');
-
-    can.addEventListener('contextmenu', function (e) {
-      if (e.button === 2) {
-        e.preventDefault();
-        return false;
-      }
-    }, false);
+    const particles = document.getElementById('particles-js');
   }
-
 }

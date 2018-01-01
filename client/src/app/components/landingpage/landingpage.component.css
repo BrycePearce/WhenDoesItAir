@@ -5,10 +5,10 @@
 
 
 /*
-  *
-  * Credit to Nitix & Haliax for significant help on the design for the site.
-  *
-  */
+ *
+ * Credit to Nitix & Haliax for significant help on the design for the site.
+ *
+ */
 
 * {
   box-sizing: border-box;
@@ -17,13 +17,6 @@
 .selected {
   background-color: #CFD8DC !important;
   color: white;
-}
-
-body {
-  background-repeat: no-repeat;
-  background-position: center center;
-  background-attachment: fixed;
-  background-size: cover;
 }
 
 .landingContainer {
@@ -47,13 +40,6 @@ input {
   height: 72px;
   width: 100%;
   border-color: rgb(18, 18, 18);
-}
-
-.background {
-  background-repeat: no-repeat;
-  background-position: center center;
-  background-attachment: fixed;
-  background-size: cover;
 }
 
 .results-list {

@@ -9,7 +9,6 @@ router.post('/tvdbDetails', function (req, res, next) {
     .set('Authorization', 'Bearer ' + req.app.get('jsontoken'))
     .end(function (err, response) {
       if (err || response.status != 200) {
-        console.log(err);
         return response.status({
           success: false
         });
@@ -20,7 +19,6 @@ router.post('/tvdbDetails', function (req, res, next) {
           .set('Authorization', 'Bearer ' + req.app.get('jsontoken'))
           .end(function (err, responseNext) {
             if (err || responseNext.status != 200) {
-              console.log(err);
               return res.status({
                 success: false
               });
