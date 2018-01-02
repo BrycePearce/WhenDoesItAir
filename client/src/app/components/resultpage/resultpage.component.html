@@ -9,32 +9,45 @@
             <img class="image" src={{tmdbImage}}/>
           </div>
           <div class="rating">
+            <mat-progress-spinner *ngIf="true" mode="isLoading" diameter="20"> </mat-progress-spinner>
             <span class="ratingtext">{{tvdbRating}}</span>
             <img class="image" src={{tvdbImage}} />
           </div>
           <div class="rating">
             <img class="image" />
-            <span class="ratingtext">thing3</span>
+            <span class="ratingtext">TBD</span>
           </div>
         </div>
         <div class="title">{{tmdbDetails.show}}</div>
-        <div class="airDate">{{finalAirtime}}</div>
+        <div class="airDate">
+          <mat-progress-spinner *ngIf="isLoading" mode="indeterminate" diameter="20"> </mat-progress-spinner>
+          {{finalAirtime}}
+        </div>
         <div class="overview">{{overview}}</div>
         <div class="overviewDetailsArea">
           <div class="left">
             <div class="details">
-              <p>Status</p>{{status}}
+              <p>Status</p>
+              <mat-progress-spinner *ngIf="isLoading" mode="indeterminate" diameter="20"> </mat-progress-spinner>
+              {{status}}
             </div>
             <div class="details">
               <p>Genre</p>
+              <mat-progress-spinner *ngIf="isLoading" mode="indeterminate" diameter="20"> </mat-progress-spinner>
               <span class="genre" *ngFor="let g of genre">{{g}} </span>
             </div>
           </div>
           <div class="right">
             <div class="details">
-              <p>Airtime</p> {{airday}} {{airtime}} </div>
+              <p>Airtime</p>
+              <mat-progress-spinner *ngIf="isLoading" mode="indeterminate" diameter="20"> </mat-progress-spinner>
+              {{airday}} {{airtime}}
+            </div>
             <div class="details">
-              <p>Airtime for {{userTimezone}}</p>{{localReleaseTime}}</div>
+              <p>Airtime for {{userTimezone}}</p>
+              <mat-progress-spinner *ngIf="isLoading" mode="indeterminate" diameter="20"> </mat-progress-spinner>
+              {{localReleaseTime}}
+            </div>
           </div>
         </div>
       </div>
@@ -43,27 +56,37 @@
     <div class="footer">
       <div class="bottomStatic">
         <div class="details">
-          <p>Language</p> {{language}} </div>
+          <p>Language</p> {{language}}
+        </div>
         <div class="details">
-          <p>Rating</p>{{contentRating}} </div>
-
+          <p>Rating</p>
+          <mat-progress-spinner *ngIf="isLoading" mode="indeterminate" diameter="20"></mat-progress-spinner>
+          {{contentRating}}
+        </div>
         <div class="details">
-          <p>Network</p>{{network}}</div>
+          <p>Network</p>
+          <mat-progress-spinner *ngIf="isLoading" mode="indeterminate" diameter="20"></mat-progress-spinner>
+          {{network}}
+        </div>
         <div class="details">
-          <p>Runtime</p>{{runtime}} min</div>
+          <p>Runtime</p>{{runtime}} min
+        </div>
       </div>
       <div class="cast">
         <div class="bottomHeader">
           <p>Cast</p>
         </div>
         <div class="castMembers">
+          <mat-progress-spinner *ngIf="isLoading" mode="indeterminate" diameter="100"></mat-progress-spinner>
           <div class="member" *ngFor="let character of actor">
             <span class="character">{{firstRole(character.role)}}</span>
             <span class="actor">{{character.name}}</span>
           </div>
         </div>
       </div>
-      <div class="searchAgain"><a class="returnText" href="/">Search Again</a></div>
+      <div class="searchAgain">
+        <a class="returnText" routerLink="/">Search Again</a>
+      </div>
     </div>
   </div>
 </div>

@@ -46,12 +46,12 @@ export class ResultPageComponent implements OnInit {
   tempAirDate: string;
   localReleaseTime: string;
   userTimezone: string;
-
+  isLoading: boolean;
   constructor(
     private route: ActivatedRoute, // for our route params
     private TaskService: TaskService,  // inject our taskService into our LandingPage
     private TitleService: TitleService
-  ) { }
+  ) { this.isLoading = true; }
 
   ngOnInit(): void {
     if (!this.TitleService.getBackground().includes('undefined')) {
@@ -123,8 +123,9 @@ export class ResultPageComponent implements OnInit {
         }
 
 
-        this.tvdbInfo = this.TaskService.tvdbDetails(this.tvdbId)
+        this.TaskService.tvdbDetails(this.tvdbId)
           .subscribe(response => {
+            this.isLoading = false;
             this.tvdbInfo = response;
             this.genre = response.tvdbDetails.genre;
             this.actor = response.actorInfo;
