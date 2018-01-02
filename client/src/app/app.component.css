@@ -12,12 +12,18 @@
    background-attachment: fixed;
  }
 
- background {
-   background-repeat: no-repeat;
-   background-size: cover;
-   background-position: center center;
-   background-attachment: fixed;
- }
+ .tmdbTM {
+  color: white;
+  position: absolute;
+  bottom: -85vh;
+  right: 2vh;
+  margin: 10px;
+  font-size: 10px;
+  background-color: rgba(20, 25, 29, 0.9);
+  display: flex;
+  align-items: center;
+}
+
 
  h1 {
    font-family: Calibri;
@@ -62,18 +68,6 @@
    .tmdbTM {
      display: none;
    }
- }
-
- .tmdbTM {
-   color: white;
-   position: absolute;
-   bottom: -85vh;
-   right: 2vh;
-   margin: 10px;
-   font-size: 10px;
-   background-color: rgba(20, 25, 29, 0.9);
-   display: flex;
-   align-items: center;
  }
 
  .footer {

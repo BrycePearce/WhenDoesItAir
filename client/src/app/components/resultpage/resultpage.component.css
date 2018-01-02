@@ -233,10 +233,6 @@ body {
     flex-direction: column;
     padding: 15px;
   }
-  .tmdbTM {
-    top: 0;
-    right: initial;
-  }
   .returnText {
     font-size: 15px;
   }
