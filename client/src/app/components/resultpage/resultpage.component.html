@@ -9,8 +9,8 @@
             <img class="image" src={{tmdbImage}}/>
           </div>
           <div class="rating">
-            <mat-progress-spinner *ngIf="true" mode="isLoading" diameter="20"> </mat-progress-spinner>
-            <span class="ratingtext">{{tvdbRating}}</span>
+            <mat-progress-spinner *ngIf="isLoading" mode="indeterminate" diameter="20"> </mat-progress-spinner>
+            <span class="ratingtext">{{tvdbInfo?.siteRating}}</span>
             <img class="image" src={{tvdbImage}} />
           </div>
           <div class="rating">
@@ -29,7 +29,7 @@
             <div class="details">
               <p>Status</p>
               <mat-progress-spinner *ngIf="isLoading" mode="indeterminate" diameter="20"> </mat-progress-spinner>
-              {{status}}
+              {{tvdbInfo?.status}}
             </div>
             <div class="details">
               <p>Genre</p>
@@ -61,15 +61,15 @@
         <div class="details">
           <p>Rating</p>
           <mat-progress-spinner *ngIf="isLoading" mode="indeterminate" diameter="20"></mat-progress-spinner>
-          {{contentRating}}
+          {{tvdbInfo?.rating}}
         </div>
         <div class="details">
           <p>Network</p>
           <mat-progress-spinner *ngIf="isLoading" mode="indeterminate" diameter="20"></mat-progress-spinner>
-          {{network}}
+          {{tvdbInfo?.network}}
         </div>
         <div class="details">
-          <p>Runtime</p>{{runtime}} min
+          <p>Runtime</p>{{tvdbInfo?.runtime}} min
         </div>
       </div>
       <div class="cast">

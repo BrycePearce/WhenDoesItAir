@@ -22,20 +22,20 @@ export class TaskService {
       .map(show => {
         const res = show.json();
         // grab the items we want from the response
-        const resultItems = res.results.map((show, index) => {
+        const resultItems = res.results.map((show2, index) => {
           if (res.results[index].poster_path) {
             poster = 'https://image.tmdb.org/t/p/w92/' + res.results[index].poster_path;
           } else { poster = '../../../assets/posternotfound.png'; }
           return {
-            id: show.id,
+            id: show2.id,
             poster: poster,
-            rating: show.vote_average,
-            backdrop: show.backdrop_path,
-            country: show.origin_country,
-            orglanguage: show.original_language,
-            show: show.name,
-            overview: show.overview,
-            year: show.first_air_date.substring(0, 4)
+            rating: show2.vote_average,
+            backdrop: show2.backdrop_path,
+            country: show2.origin_country,
+            orglanguage: show2.original_language,
+            show: show2.name,
+            overview: show2.overview,
+            year: show2.first_air_date.substring(0, 4)
           };
         });
         // return our newly formed object

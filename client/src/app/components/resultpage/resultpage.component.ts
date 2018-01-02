@@ -22,19 +22,14 @@ export class ResultPageComponent implements OnInit {
   episodesInfo = [];
   genre = [];
   actor = [];
-  characters = [];
   tmdbDetails: any;
-  country = '';
   initPosterW = 'w92';
   tvdbId: string;
-  tvdbInfo: Object;
+  tvdbInfo: any;
   tvdbRating: string;
-  status: string;
   airday: string;
   airtime: string;
   contentRating: string;
-  network: string;
-  runtime: string;
   backdrop: string;
   tvdbImage = '../../../assets/icon.png';
   tmdbImage = '../../../assets/tmdb.png';
@@ -122,20 +117,14 @@ export class ResultPageComponent implements OnInit {
           this.airDate = moment(futureArray[0]).endOf('day').fromNow();
         }
 
-
         this.TaskService.tvdbDetails(this.tvdbId)
           .subscribe(response => {
             this.isLoading = false;
-            this.tvdbInfo = response;
-            this.genre = response.tvdbDetails.genre;
+            this.tvdbInfo = response.tvdbDetails;
             this.actor = response.actorInfo;
-            this.tvdbRating = response.tvdbDetails.siteRating;
-            this.contentRating = response.tvdbDetails.rating;
-            this.status = response.tvdbDetails.status;
+            this.genre = response.tvdbDetails.genre;
             this.airday = response.tvdbDetails.airsDayOfWeek;
             this.airtime = response.tvdbDetails.airsTime;
-            this.network = response.tvdbDetails.network;
-            this.runtime = response.tvdbDetails.runtime;
             this.finalAirtime = this.determineAirTime(this.tempAirDate, this.airday, this.airtime);
             this.localReleaseTime = this.localRelease(this.tempAirDate, this.airday, this.airtime);
             this.userTimezone = this.userTimezones();
