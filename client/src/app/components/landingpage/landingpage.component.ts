@@ -65,11 +65,13 @@ export class LandingPageComponent implements OnInit {
       }
       if (this.arrowkeyLocation === -1) {
         this.router.navigate(['/details', this.shows[0].id]);
+        this.arrowkeyLocation = -1;
       }
       if (this.shows[this.arrowkeyLocation] === undefined) {
         return null;
       }
       this.router.navigate(['/details', this.shows[this.arrowkeyLocation].id]);
+      this.arrowkeyLocation = -1;
     }
   }
 }
