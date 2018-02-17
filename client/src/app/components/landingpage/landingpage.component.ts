@@ -1,5 +1,5 @@
 // this will be our landing page
-import { Component, ViewEncapsulation, } from '@angular/core';
+import { Component, ViewEncapsulation, OnDestroy, } from '@angular/core';
 import { TaskService } from '../../services/task.service';
 import { TitleService } from '../../services/title.service';
 import { Router } from '@angular/router';
@@ -12,13 +12,12 @@ import { OnInit } from '@angular/core';
   providers: [TaskService]
 })
 
-export class LandingPageComponent implements OnInit {
-  keystroke: string;
-  shows = [];
-  placeholderText: string;
-  backgroundPlaceholder: any;
-  arrowkeyLocation = -1;
-
+export class LandingPageComponent implements OnInit, OnDestroy {
+  public keystroke: string;
+  public shows = [];
+  public placeholderText: string;
+  public backgroundPlaceholder: any;
+  public arrowkeyLocation = -1;
   constructor(private TaskService: TaskService, private TitleService: TitleService, public router: Router) {
   }
 
@@ -65,13 +64,15 @@ export class LandingPageComponent implements OnInit {
       }
       if (this.arrowkeyLocation === -1) {
         this.router.navigate(['/details', this.shows[0].id]);
-        this.arrowkeyLocation = -1;
       }
       if (this.shows[this.arrowkeyLocation] === undefined) {
         return null;
       }
       this.router.navigate(['/details', this.shows[this.arrowkeyLocation].id]);
-      this.arrowkeyLocation = -1;
     }
+  }
+
+  ngOnDestroy() {
+    this.arrowkeyLocation = -1;
   }
 }

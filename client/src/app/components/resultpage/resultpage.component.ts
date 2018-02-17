@@ -74,7 +74,7 @@ export class ResultPageComponent implements OnInit {
     if ((this.tmdbDetails && (Object.keys(this.tmdbDetails).length === 0))) {
       this.TaskService.tmdbDetails(this.tmdbid)
         .subscribe(res => {
-          this.backdrop = 'https://image.tmdb.org/t/p/w1920' + res.data.backdrop_path;
+          this.backdrop = 'https://image.tmdb.org/t/p/w1280' + res.data.backdrop_path;
           document.body.style.backgroundImage = 'url(' + this.backdrop + ')';
           this.tmdbDetails = res.data;
           this.poster = 'https://image.tmdb.org/t/p/w300/' + res.data.poster_path;
